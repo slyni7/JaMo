@@ -541,6 +541,26 @@ class MacroProcessor {
     macros = new Map();
     typeNames = new Set();
     openers = new Set(["ㅁ", "ㄸ", "ㅃ", "ㅎ", "ㅑ"]);
+    /** Only the portion already used to close a definition is fixed in its source token. */
+    boundaryTokens(token) {
+        const body = token.boundaryExpansion;
+        this.produced += body.length;
+        if (this.produced > MAX_MACRO_EXPANSION_TOKENS)
+            throw new ParseError(`custom 확장 토큰 한도 ${MAX_MACRO_EXPANSION_TOKENS}개를 넘었습니다`, token.line, token.col);
+        return body.map(part => ({ ...part, line: token.line, col: token.col, macroChain: token.macroChain }));
+    }
+    bodyTokens(tokens, start, end, completeTail = false) {
+        const result = [];
+        for (let index = start; index < end; index++) {
+            const { boundaryTail, ...token } = tokens[index];
+            result.push(token);
+            // A COMBO payload shares its source tokens, but an inserted tail lives in
+            // its expanded stream. Bring that tail back inside the retained payload.
+            if (boundaryTail?.length && (index + 1 < end || completeTail) && tokens[index + 1] !== boundaryTail[0])
+                appendTokens(result, this.bodyTokens(boundaryTail, 0, boundaryTail.length, true));
+        }
+        return result;
+    }
     replacement(token, body, chain) {
         if (chain.includes(token.value))
             throw new ParseError(`custom 매크로가 순환합니다: ${[...chain, token.value].join(" → ")}`, token.line, token.col);
@@ -584,7 +604,10 @@ class MacroProcessor {
         const result = [];
         for (let index = 0; index < tokens.length; index++) {
             const token = tokens[index];
-            if (token.kind === "ㅊ") {
+            if (token.boundaryExpansion !== undefined) {
+                appendTokens(result, this.balanceTokens(this.boundaryTokens(token), definitions, chain));
+            }
+            else if (token.kind === "ㅊ") {
                 // Registration names and inline bodies are syntax data, not active blocks.
                 if (tokens[index + 2]?.kind === "=") {
                     index = this.inlineEnd(tokens, index + 3) - 1;
@@ -603,7 +626,7 @@ class MacroProcessor {
         }
         return result;
     }
-    collectBlock(tokens, start, definitions, nesting = 0) {
+    collectBlock(tokens, start, definitions, nesting = 0, boundaries = []) {
         const intro = tokens[start], name = this.nameAt(tokens, start);
         if (nesting >= MAX_SYNTAX_DEPTH)
             throw new ParseError(`custom 본문 중첩 한도 ${MAX_SYNTAX_DEPTH}단계를 넘었습니다`, intro.line, intro.col);
@@ -616,37 +639,44 @@ class MacroProcessor {
             const token = tokens[index];
             if (token.kind === "EOF")
                 break;
-            if (token.kind === "ㅊ") {
+            if (token.kind === "ㅊ" && token.boundaryExpansion === undefined) {
                 const nestedName = this.nameAt(tokens, index);
                 if (tokens[index + 2]?.kind === "=") {
                     const end = this.inlineEnd(tokens, index + 3);
                     local.set(nestedName, tokens.slice(index + 3, end));
-                    appendTokens(body, tokens.slice(index, end));
+                    appendTokens(body, this.bodyTokens(tokens, index, end));
                     index = end - 1;
                     previous = "custom_definition";
                     continue;
                 }
                 if (tokens[index + 2]?.kind !== "(") {
-                    const nested = this.collectBlock(tokens, index, local, nesting + 1);
+                    const nested = this.collectBlock(tokens, index, local, nesting + 1, boundaries);
                     local.set(nestedName, nested.body);
-                    appendTokens(body, tokens.slice(index, nested.end));
+                    appendTokens(body, this.bodyTokens(tokens, index, nested.end));
                     index = nested.end - 1;
                     previous = "ㅋ";
                     continue;
                 }
                 const end = this.typeHeaderEnd(tokens, index);
-                appendTokens(body, tokens.slice(index, end));
+                appendTokens(body, this.bodyTokens(tokens, index, end));
                 level++;
                 index = end - 1;
                 previous = ")";
                 continue;
             }
-            const expanded = token.kind === "NAME" && local.has(token.value)
-                ? this.balanceTokens(this.replacement(token, local.get(token.value), []), local, [token.value])
-                : [token];
+            const expanded = token.boundaryExpansion !== undefined
+                ? this.balanceTokens(this.boundaryTokens(token), local)
+                : token.kind === "NAME" && local.has(token.value)
+                    ? this.balanceTokens(this.replacement(token, local.get(token.value), []), local, [token.value])
+                    : [token];
             let consumed = index + 1;
             for (let part = 0; part < expanded.length; part++) {
                 const virtual = expanded[part];
+                if (virtual.boundaryExpansion !== undefined) {
+                    spliceTokens(expanded, part, 1, this.balanceTokens(this.boundaryTokens(virtual), local));
+                    part--;
+                    continue;
+                }
                 if (virtual.kind === "COMBO") {
                     // A deferred combo in an alias consumes the caller's following payload too.
                     const length = expanded.length;
@@ -678,15 +708,19 @@ class MacroProcessor {
                         continue;
                     }
                     if (following[part + 2]?.kind === "SEP") {
-                        const originalLength = following.length;
-                        const nested = this.collectBlock(following, part, local, nesting + 1);
+                        const boundary = { index: length };
+                        const callerBoundaries = boundaries.filter(item => item.index >= consumed)
+                            .map(item => ({ original: item, shifted: { index: length + item.index - consumed } }));
+                        const nested = this.collectBlock(following, part, local, nesting + 1, [boundary, ...callerBoundaries.map(item => item.shifted)]);
                         local.set(nestedName, nested.body);
-                        consumed += Math.max(0, nested.end - length);
-                        // Closing aliases can leave additional tokens after the definition.
-                        const added = following.length - originalLength;
-                        if (added)
-                            spliceTokens(tokens, consumed, 0, following.slice(nested.end, nested.end + added));
-                        part = Math.min(nested.end, length) - 1;
+                        // Nested closers can insert tails on either side of this caller boundary.
+                        // Copy both portions back instead of assuming every new token follows the block.
+                        for (const item of callerBoundaries)
+                            item.original.index = consumed + item.shifted.index - boundary.index;
+                        spliceTokens(expanded, 0, expanded.length, following.slice(0, boundary.index));
+                        spliceTokens(tokens, consumed, tokens.length - consumed, following.slice(boundary.index));
+                        consumed += Math.max(0, nested.end - boundary.index);
+                        part = Math.min(nested.end, boundary.index) - 1;
                         previous = "ㅋ";
                         continue;
                     }
@@ -697,15 +731,28 @@ class MacroProcessor {
                     level--;
                     if (level === 0) {
                         // A closing alias may contribute body tokens before the terminator.
-                        appendTokens(body, expanded.slice(0, part));
-                        const tail = expanded.slice(part + 1);
+                        appendTokens(body, this.bodyTokens(expanded, 0, part));
+                        const captured = expanded.slice(0, part + 1).map(item => ({ ...item }));
+                        const tail = expanded.slice(part + 1).map(item => ({ ...item }));
+                        if (token.kind !== "ㅋ" || consumed !== index + 1 || part !== 0 || tail.length) {
+                            // Parent collectors retain these same source tokens. Preserve only the
+                            // consumed expansion there, while keeping all other aliases lexical.
+                            token.boundaryExpansion = captured;
+                            for (let cursor = index + 1; cursor < consumed; cursor++)
+                                tokens[cursor].boundaryExpansion = [];
+                        }
+                        if (tail.length)
+                            tokens[consumed - 1].boundaryTail = tail;
+                        for (const boundary of boundaries)
+                            if (consumed < boundary.index)
+                                boundary.index += tail.length;
                         spliceTokens(tokens, consumed, 0, tail);
                         return { body, end: consumed };
                     }
                 }
                 previous = virtual.kind;
             }
-            appendTokens(body, tokens.slice(index, consumed));
+            appendTokens(body, this.bodyTokens(tokens, index, consumed));
             index = consumed - 1;
         }
         throw new ParseError(`custom ${name} 본문을 닫는 ㅋ가 없습니다`, intro.line, intro.col);
@@ -714,7 +761,11 @@ class MacroProcessor {
         const result = [];
         for (let index = 0; index < tokens.length; index++) {
             const token = tokens[index];
-            if (token.kind === "COMBO") {
+            if (token.boundaryExpansion !== undefined) {
+                spliceTokens(tokens, index, 1, this.boundaryTokens(token));
+                index--;
+            }
+            else if (token.kind === "COMBO") {
                 const combo = expandCombo(tokens, index);
                 spliceTokens(tokens, index, combo.end - index, combo.body);
                 index--;
@@ -754,7 +805,7 @@ class MacroProcessor {
         }
         return result;
     }
-    run(tokens) { return this.expand([...tokens]); }
+    run(tokens) { return this.expand(tokens.map(token => ({ ...token }))); }
 }
 class Parser {
     static BINDING = {
