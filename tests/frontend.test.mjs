@@ -1,8 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { KEYWORDS, MAX_SYNTAX_DEPTH, ParseError, isIdentifier, parse } from "../dist/frontend.js";
+import { Interpreter } from "../dist/runtime.js";
 
 const expression = (source, declaredNames = []) => parse(source, { declaredNames })[0].args.value;
+async function runtimeOutput(source) {
+  const lines = [];
+  await new Interpreter({ output: line => lines.push(line), maxSteps: 10000 }).execute(source);
+  return lines;
+}
 function parseError(source, fragment, position, declaredNames = []) {
   let result;
   assert.throws(() => parse(source, { declaredNames }), error => {
@@ -23,6 +29,54 @@ test("40 assigned characters include the new custom introducer", () => {
   assert.equal(KEYWORDS.size, 40);
   assert.ok(KEYWORDS.has("ㅊ"));
   assert.ok(!KEYWORDS.has("ㄳ"));
+});
+
+test("a custom introducer alias consumes caller tokens inside a block macro", async () => {
+  for (const name of ["newCommand", "새명령"]) {
+    for (const definition of ["ㅊ정의=ㅊ", "ㅊ정의=등록\nㅊ등록=ㅊ"]) {
+      const source = `${definition}\nㅊ공장\n정의 ${name}=1\nㅋ\n공장\nㅂ(${name})`;
+      assert.deepEqual(await runtimeOutput(source), ["1"], source);
+    }
+  }
+});
+
+test("custom aliases preserve nested block and type definitions", async () => {
+  const block = "ㅊ정의=ㅊ\nㅊ공장\n정의 인사\nㅂ(3)\nㅋ\nㅋ\n공장\n인사";
+  const type = "ㅊ정의=ㅊ\nㅊ공장\n정의 상자()\nㅒ 값=4\nㅋ\nㅋ\n공장\nㅂ(상자().값)";
+  assert.deepEqual(await runtimeOutput(block), ["3"]);
+  assert.deepEqual(await runtimeOutput(type), ["4"]);
+});
+
+test("declaration aliases preserve Hangul names at the actual macro invocation", async () => {
+  for (const name of ["value", "몍", "노"]) {
+    for (const early of [true, false]) {
+      for (const declaration of ["ㅊ선언=ㅒ", "ㅊ선언=도입\nㅊ도입=ㅒ"]) {
+        const block = `ㅊ동작\n선언 ${name}=7\nㅋ`;
+        const source = `${early ? declaration + "\n" + block : block + "\n" + declaration}\n동작\nㅂ(${name})`;
+        assert.deepEqual(await runtimeOutput(source), ["7"], source);
+      }
+    }
+  }
+});
+
+test("later alias redefinition does not erase an earlier expanded declaration", async () => {
+  const source = "ㅊ동작\n선언 몍=7\nㅋ\nㅊ선언=ㅒ\n동작\nㅊ선언=ㅂ\nㅂ(몍)";
+  assert.deepEqual(await runtimeOutput(source), ["7"]);
+});
+
+test("an unused late declaration alias does not reserve command spellings", async () => {
+  const source = "ㅊ사용안함\n선언 노=7\nㅋ\nㅊ선언=ㅒ\nㅂ(노)";
+  assert.deepEqual(await runtimeOutput(source), ["ㅖ"]);
+});
+
+test("a future declaration alias does not change an earlier empty alias expansion", async () => {
+  const source = "ㅊ선언=\n선언 몍\nㅂ(1)\nㅋ\nㅊ선언=ㅒ";
+  assert.deepEqual(await runtimeOutput(source), ["1"]);
+});
+
+test("speculative declaration discovery retains normal macro cycle errors", () => {
+  const source = "ㅊ기다림\n선언 노=7\nㅋ\nㅊ선언=ㅒ\nㅊ순환=순환\n순환\n기다림";
+  parseError(source, "custom 매크로가 순환합니다", [6, 1]);
 });
 
 test("ordinary names preserve syllables and Unicode identity", () => {

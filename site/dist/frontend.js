@@ -318,6 +318,7 @@ function resolveSpellings(raw, options) {
     const names = new Set(["입력", "범위", "추가", "삽입", "삭제", "복사", "읽기", "쓰기", "자신", ...(options.declaredNames ?? [])]);
     const namePositions = new Set();
     const macroTails = new Map();
+    const possibleTails = new Map();
     const commandAt = (index) => {
         if (tokens[index].kind === "NAME" && names.has(tokens[index].value))
             return { token: tokens[index], next: index + 1 };
@@ -342,6 +343,31 @@ function resolveSpellings(raw, options) {
         if (register)
             names.add(tokens[index].value);
     };
+    const declarationPositions = (stream, index, kind, next, record) => {
+        if (["ㅒ", "ㅎ", "ㅊ", "ㅃ", "ㅏ", "ㅛ", "ㄲ"].includes(kind))
+            record(next);
+        if (kind === ".")
+            record(index + 1, false);
+        if (stream[index + 1]?.kind === "=>")
+            record(index);
+        if (kind === "ㅚ" && ["STRING", "CHAR"].includes(stream[index + 1]?.kind)) {
+            record(index + 2);
+            if (stream[index + 2]?.kind !== "NAME") {
+                const basename = String(stream[index + 1].value).replaceAll('\\', '/').split('/').at(-1);
+                const dot = basename.lastIndexOf('.');
+                // Implicit module names are collected by the ordinary source pass.
+                if (stream === tokens)
+                    names.add(dot > 0 && dot < basename.length - 1 ? basename.slice(0, dot) : basename);
+            }
+        }
+        if (["ㅎ", "ㅊ"].includes(kind) && stream[next + 1]?.kind === "(") {
+            let cursor = next + 2;
+            while (cursor < stream.length && ![")", "SEP", "EOF"].includes(stream[cursor].kind)) {
+                record(cursor);
+                cursor++;
+            }
+        }
+    };
     const collect = (combos) => {
         for (let index = 0; index < tokens.length; index++) {
             if (tokens[index].kind === "ㅊ" && tokens[index + 1]?.kind === "NAME" && tokens[index + 2]?.kind === "=") {
@@ -349,8 +375,15 @@ function resolveSpellings(raw, options) {
                 while (end < tokens.length && !["SEP", "EOF"].includes(tokens[end].kind))
                     end++;
                 const body = packCombos(tokens.slice(index + 3, end).flatMap(token => token.kind === "NAME" && names.has(token.value) ? [token] : spellingTokens(token)));
-                if (body.length)
-                    macroTails.set(tokens[index + 1].value, body.at(-1).kind === "COMBO" ? body.at(-1) : tokens[end - 1]);
+                if (body.length) {
+                    const name = tokens[index + 1].value;
+                    const tail = body.at(-1).kind === "COMBO" ? body.at(-1) : tokens[end - 1];
+                    macroTails.set(name, tail);
+                    const alternatives = possibleTails.get(name) ?? new Map();
+                    const effective = tail.kind === "COMBO" ? tail.value.prefix[0] : tail;
+                    alternatives.set(`${effective.kind}:${effective.value}`, effective);
+                    possibleTails.set(name, alternatives);
+                }
                 else
                     macroTails.delete(tokens[index + 1].value);
             }
@@ -370,32 +403,79 @@ function resolveSpellings(raw, options) {
                 next++;
             while (tokens[next]?.kind === "SOFT_NL")
                 next++;
-            if (["ㅒ", "ㅎ", "ㅊ", "ㅃ", "ㅏ", "ㅛ", "ㄲ"].includes(kind))
-                introduce(next);
-            if (kind === ".")
-                introduce(index + 1, false);
-            if (tokens[index + 1]?.kind === "=>")
-                introduce(index);
-            if (kind === "ㅚ" && ["STRING", "CHAR"].includes(tokens[index + 1]?.kind)) {
-                introduce(index + 2);
-                if (tokens[index + 2]?.kind !== "NAME") {
-                    const basename = String(tokens[index + 1].value).replaceAll('\\', '/').split('/').at(-1);
-                    const dot = basename.lastIndexOf('.');
-                    names.add(dot > 0 && dot < basename.length - 1 ? basename.slice(0, dot) : basename);
-                }
-            }
-            if (["ㅎ", "ㅊ"].includes(kind) && tokens[next + 1]?.kind === "(") {
-                let cursor = next + 2;
-                while (cursor < tokens.length && ![")", "SEP", "EOF"].includes(tokens[cursor].kind)) {
-                    introduce(cursor);
-                    cursor++;
-                }
-            }
+            declarationPositions(tokens, index, kind, next, introduce);
         }
     };
     collect(false);
     macroTails.clear();
     collect(true);
+    // A block's body can call an introducer defined only before the block is
+    // invoked. Find candidate names, then ask the existing sequential expander
+    // which declarations really appear. Do not apply the last definition to
+    // earlier source, or reserve names merely because an unused macro could.
+    const candidates = new Set();
+    const possibleKinds = new Map();
+    for (const name of possibleTails.keys()) {
+        const kinds = new Set(), visited = new Set();
+        const pending = [[name, 0]];
+        for (let cursor = 0; cursor < pending.length; cursor++) {
+            const [spelling, depth] = pending[cursor];
+            if (visited.has(spelling) || depth >= MAX_SYNTAX_DEPTH)
+                continue;
+            visited.add(spelling);
+            for (const tail of possibleTails.get(spelling)?.values() ?? []) {
+                if (tail.kind === "NAME")
+                    pending.push([tail.value, depth + 1]);
+                else
+                    kinds.add(tail.kind);
+            }
+        }
+        possibleKinds.set(name, kinds);
+    }
+    tokens.forEach((token, index) => {
+        if (token.kind !== "NAME")
+            return;
+        for (const kind of possibleKinds.get(token.value) ?? []) {
+            let next = index + 1;
+            if (tokens[next]?.kind === "(")
+                next++;
+            while (tokens[next]?.kind === "SOFT_NL")
+                next++;
+            declarationPositions(tokens, index, kind, next, position => {
+                const candidate = tokens[position];
+                if (candidate?.kind === "NAME" && !names.has(candidate.value) && decomposableSpelling(candidate.value))
+                    candidates.add(candidate.value);
+            });
+        }
+    });
+    if (candidates.size) {
+        const probe = packCombos(tokens.flatMap(token => token.kind === "NAME"
+            && (names.has(token.value) || candidates.has(token.value)) ? [token] : spellingTokens(token)));
+        try {
+            const expanded = new MacroProcessor().run(probe);
+            const discovered = new Set();
+            expanded.forEach((token, index) => {
+                let next = index + 1;
+                if (token.kind === "ㅛ" && expanded[next]?.kind === "(")
+                    next++;
+                while (expanded[next]?.kind === "SOFT_NL")
+                    next++;
+                declarationPositions(expanded, index, token.kind, next, (position, register = true) => {
+                    const declared = expanded[position];
+                    if (register && declared?.kind === "NAME" && candidates.has(declared.value))
+                        discovered.add(declared.value);
+                });
+            });
+            for (const name of discovered)
+                names.add(name);
+        }
+        catch (error) {
+            // Candidate protection is speculative; final expansion of the original
+            // spellings remains responsible for syntax errors and resource limits.
+            if (!(error instanceof ParseError))
+                throw error;
+        }
+    }
     const result = [];
     tokens.forEach((token, index) => {
         if (token.kind !== "NAME" || namePositions.has(index) || names.has(token.value) || !decomposableSpelling(token.value)) {
@@ -583,19 +663,30 @@ class MacroProcessor {
                     part--;
                     continue;
                 }
-                if (virtual.kind === "ㅊ" && expanded[part + 1]?.kind === "NAME") {
-                    const nestedName = expanded[part + 1].value;
-                    if (expanded[part + 2]?.kind === "=") {
-                        const end = this.inlineEnd(expanded, part + 3);
-                        local.set(nestedName, expanded.slice(part + 3, end));
-                        part = end - 1;
+                if (virtual.kind === "ㅊ") {
+                    // Like a deferred COMBO, an aliased introducer owns the following
+                    // caller tokens. Balance its entire definition, not just the alias.
+                    const length = expanded.length;
+                    const following = [...expanded, ...tokens.slice(consumed)];
+                    const nestedName = this.nameAt(following, part);
+                    if (following[part + 2]?.kind === "=") {
+                        const end = this.inlineEnd(following, part + 3);
+                        local.set(nestedName, following.slice(part + 3, end));
+                        consumed += Math.max(0, end - length);
+                        part = Math.min(end, length) - 1;
                         previous = "custom_definition";
                         continue;
                     }
-                    if (expanded[part + 2]?.kind === "SEP") {
-                        const nested = this.collectBlock(expanded, part, local, nesting + 1);
+                    if (following[part + 2]?.kind === "SEP") {
+                        const originalLength = following.length;
+                        const nested = this.collectBlock(following, part, local, nesting + 1);
                         local.set(nestedName, nested.body);
-                        part = nested.end - 1;
+                        consumed += Math.max(0, nested.end - length);
+                        // Closing aliases can leave additional tokens after the definition.
+                        const added = following.length - originalLength;
+                        if (added)
+                            spliceTokens(tokens, consumed, 0, following.slice(nested.end, nested.end + added));
+                        part = Math.min(nested.end, length) - 1;
                         previous = "ㅋ";
                         continue;
                     }

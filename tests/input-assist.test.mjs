@@ -83,8 +83,8 @@ class Editor extends EventTarget {
     this.event('input', { inputType, data: text, isComposing });
   }
 }
-function fixture(options = {}) {
-  const editor = new Editor();
+function fixture(options = {}, EditorClass = Editor) {
+  const editor = new EditorClass();
   let time = 0;
   const assist = createTextareaInputAssist(editor, options, undefined, () => time);
   return { editor, assist, at: value => { time = value; } };
@@ -210,4 +210,82 @@ test('synchronous select from setRangeText does not interrupt a palette combinat
   const assist = createTextareaInputAssist(editor, defaults, undefined, () => time);
   assist.insert('ㅂ'); time = 69; assist.insert('ㅅ');
   assert.equal(editor.value, 'ㅄ');
+});
+
+// Models the native editing boundary and its synchronous events, not the
+// browser's history implementation. Real undo/redo requires browser validation.
+class CommandEditor extends Editor {
+  commands = [];
+  focused = false;
+  commandMode = 'edit';
+  ownerDocument = { execCommand: (command, showUI, text) => {
+    this.commands.push({ command, showUI, text, start: this.selectionStart, end: this.selectionEnd });
+    if (this.commandMode === 'throw') throw new Error('Unsupported editing command');
+    if (this.commandMode === 'reject') return false;
+    this.event('beforeinput', { inputType: 'insertText', data: text, isComposing: false });
+    this.value = this.value.slice(0, this.selectionStart) + text + this.value.slice(this.selectionEnd);
+    this.selectionStart = this.selectionEnd = this.selectionStart + text.length;
+    this.event('input', { inputType: 'insertText', data: text, isComposing: false });
+    return this.commandMode !== 'edit-but-false';
+  } };
+  focus() { this.focused = true; }
+  setSelectionRange(start, end) { this.selectionStart = start; this.selectionEnd = end; this.event('select'); }
+}
+
+test('native command edits keep the existing input and palette runs without duplicate notifications', () => {
+  for (const [a, b] of [['native', 'native'], ['palette', 'palette'], ['native', 'palette'], ['palette', 'native']]) {
+    const { editor, assist } = fixture({}, CommandEditor);
+    const values = []; editor.addEventListener('input', () => values.push(editor.value));
+    const insert = (kind, text) => kind === 'native' ? editor.type(text) : assist.insert(text);
+    insert(a, 'ㄱ'); insert(b, 'ㅅ');
+    assert.equal(editor.value, 'ㄳ', `${a}/${b}`);
+    assert.deepEqual(values, ['ㄱ', 'ㄳ'], `${a}/${b}`);
+    assert.deepEqual(editor.commands.at(-1), { command: 'insertText', showUI: false, text: 'ㄳ', start: 0, end: 2 });
+    assert.equal(editor.focused, true);
+    assert.equal(editor.replacements.some(edit => edit.text === 'ㄳ'), false, 'must not silently use the non-undoable fallback');
+    assert.equal(editor.selectionStart, 1); assert.equal(editor.selectionEnd, 1);
+    assist.dispose();
+  }
+});
+
+test('native palette selection replacement preserves surrounding text and completes one change', () => {
+  const editor = new CommandEditor();
+  editor.value = '😀선택뒤'; editor.selectionStart = 2; editor.selectionEnd = 4;
+  let changes = 0;
+  const assist = createTextareaInputAssist(editor, {}, () => { changes++; });
+  const values = []; editor.addEventListener('input', () => values.push(editor.value));
+  assist.insert('ㅂ');
+  assert.equal(editor.value, '😀ㅂ뒤');
+  assert.equal(editor.selectionStart, 3); assert.equal(editor.selectionEnd, 3);
+  assert.equal(changes, 1); assert.deepEqual(values, ['😀ㅂ뒤']);
+  assert.equal(editor.replacements.length, 0);
+});
+
+test('native edit detection avoids double insertion and retains unsupported-command fallback', () => {
+  for (const mode of ['reject', 'throw', 'edit-but-false']) {
+    const { editor, assist } = fixture({}, CommandEditor);
+    editor.commandMode = mode; assist.insert('ㅂ');
+    assert.equal(editor.value, 'ㅂ', mode);
+    assert.equal(editor.replacements.length, mode === 'edit-but-false' ? 0 : 1, mode);
+    assert.equal(editor.selectionStart, 1); assert.equal(editor.selectionEnd, 1);
+  }
+});
+
+test('native editing waits for IME commit and never recombines a history restoration', () => {
+  const { editor } = fixture({}, CommandEditor);
+  editor.type('ㄱ');
+  editor.event('compositionstart'); editor.type('ㅅ', 'insertCompositionText', true);
+  assert.equal(editor.commands.length, 0); assert.equal(editor.value, 'ㄱㅅ');
+  editor.event('compositionend', { data: 'ㅅ' });
+  assert.equal(editor.value, 'ㄳ'); assert.equal(editor.commands.length, 1);
+  editor.event('input', { inputType: 'insertFromComposition', data: 'ㅅ', isComposing: false });
+  assert.equal(editor.commands.length, 1);
+  editor.event('beforeinput', { inputType: 'historyUndo' });
+  editor.value = 'ㄱㅅ'; editor.selectionStart = editor.selectionEnd = 2;
+  editor.event('input', { inputType: 'historyUndo' });
+  assert.equal(editor.value, 'ㄱㅅ'); assert.equal(editor.commands.length, 1);
+  editor.event('beforeinput', { inputType: 'historyRedo' });
+  editor.value = 'ㄳ'; editor.selectionStart = editor.selectionEnd = 1;
+  editor.event('input', { inputType: 'historyRedo' });
+  assert.equal(editor.value, 'ㄳ'); assert.equal(editor.commands.length, 1);
 });

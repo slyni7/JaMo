@@ -1,4 +1,4 @@
-import { Interpreter, InputEOF, DebugAbort, display } from './runtime.js';
+import { Interpreter, InputEOF, DebugAbort, display, normalizePath } from './runtime.js';
 const scope = globalThis;
 let sequence = 0;
 let running = false;
@@ -25,8 +25,8 @@ scope.onmessage = async ({ data }) => {
     if (running)
         return;
     running = true;
-    const files = new Map(Object.entries(data.files));
-    files.set(data.path, data.source);
+    const files = new Map(Object.entries(data.files).map(([path, text]) => [normalizePath(path), text]));
+    files.set(normalizePath(data.path), data.source);
     const started = performance.now();
     const vm = new Interpreter({
         wordAliases: new Map(data.wordAliases ?? []),
@@ -63,7 +63,7 @@ scope.onmessage = async ({ data }) => {
         })
     });
     try {
-        await vm.execute(data.source, data.path);
+        await vm.runFile(data.path);
         send({ type: 'done', elapsed: performance.now() - started });
     }
     catch (error) {

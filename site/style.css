@@ -42,6 +42,8 @@ select{border-color:var(--border,#c7ccc7);background:var(--surface,#f8f8f3);colo
 .output-panel .text-button{color:inherit}
 .output-placeholder{color:var(--output-muted,#8fa58f)}
 .output-error{color:var(--error,#ffbb94)}
+.output-location{display:block;max-width:100%;min-height:44px;margin-top:6px;padding:6px 10px;border:1px solid currentColor;border-radius:4px;background:transparent;color:inherit;font:inherit;text-align:left;white-space:normal;overflow-wrap:anywhere;cursor:pointer}
+.output-location:hover,.output-location:focus-visible{background:var(--output-inset,#334c41);color:var(--output-text,#e2e9dd)}
 .output-note{color:var(--output-muted,#9eb39e)}
 #input-form,#debug-panel{border-color:var(--output-border,#5f7868);background:var(--output-inset,#334c41)}
 #program-input{background:var(--input,#f8faf3);color:var(--input-text,#223c2f)}

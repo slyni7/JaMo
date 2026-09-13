@@ -45,7 +45,7 @@ export interface TextareaInputAssist {
 }
 /**
  * Native input is inspected after the browser changes the value. A single local
- * setRangeText joins the last two characters; the first is never held back.
+ * edit joins the last two characters; the first is never held back.
  * Palette buttons should prevent pointerdown's focus change, since blur cancels.
  */
 export declare function createTextareaInputAssist(editor: HTMLTextAreaElement, initialOptions?: Partial<InputAssistOptions>, onChange?: () => void, now?: () => number): TextareaInputAssist;
