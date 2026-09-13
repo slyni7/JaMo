@@ -4,6 +4,10 @@ const VOWELS = Array.from('ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟ�
 const FINALS = ['', 'ㄱ', 'ㄲ', 'ㄱㅅ', 'ㄴ', 'ㄴㅈ', 'ㄴㅎ', 'ㄷ', 'ㄹ', 'ㄹㄱ', 'ㄹㅁ',
   'ㄹㅂ', 'ㄹㅅ', 'ㄹㅌ', 'ㄹㅍ', 'ㄹㅎ', 'ㅁ', 'ㅂ', 'ㅂㅅ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 const COMPATIBILITY = new Set([...INITIALS, ...VOWELS]);
+const CLUSTERS = new Map([
+  ['ㄳ', 'ㄱㅅ'], ['ㄵ', 'ㄴㅈ'], ['ㄶ', 'ㄴㅎ'], ['ㄺ', 'ㄹㄱ'], ['ㄻ', 'ㄹㅁ'],
+  ['ㄼ', 'ㄹㅂ'], ['ㄽ', 'ㄹㅅ'], ['ㄾ', 'ㄹㅌ'], ['ㄿ', 'ㄹㅍ'], ['ㅀ', 'ㄹㅎ'], ['ㅄ', 'ㅂㅅ'],
+]);
 export function commandParts(char: string): string | null {
   const point = char.codePointAt(0)!;
   if (point >= 0xac00 && point <= 0xd7a3) {
@@ -14,7 +18,7 @@ export function commandParts(char: string): string | null {
   if (point >= 0x1161 && point <= 0x1175) return VOWELS[point - 0x1161];
   if (point >= 0x11a8 && point <= 0x11c2) return FINALS[point - 0x11a7];
   if (point === 0x115f || point === 0x1160 || point === 0x3164) return '';
-  return COMPATIBILITY.has(char) ? char : null;
+  return COMPATIBILITY.has(char) ? char : CLUSTERS.get(char) ?? null;
 }
 
 export function decomposableSpelling(text: string): boolean {

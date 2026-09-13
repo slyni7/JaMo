@@ -262,7 +262,7 @@ test("missing and misplaced block syntax", () => {
 test("custom registration has specific malformed-body errors; unassigned jamo still fail", () => {
   parseError("\n ㅊ챣", "custom 이름 뒤에는", [2, 2]);
   parseError("ㅊ 챣\nㅂ(1)", "본문을 닫는 ㅋ");
-  for (const char of "ㄳㅄㄵㅀﾡ") parseError(char, "배정된 문법");
+  for (const char of "ㅥㆆﾡ") parseError(char, "배정된 문법");
   assert.equal(expression("챣", ["챣"]).args.name, "챣");
 });
 

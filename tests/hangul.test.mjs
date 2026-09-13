@@ -30,6 +30,59 @@ test('CP949 UHC extension covers all modern syllables and rejects invalid bytes'
  assert.throws(()=>encode('😀','cp949'),/표현할 수 없는/);
 });
 
+const clusters = Array.from('ㄳㄵㄶㄺㄻㄼㄽㄾㄿㅀㅄ');
+test('all 11 standalone clusters agree with their Unicode final jamo and roundtrip encodings', () => {
+ // NFKD maps ㅀ/ㅄ to old initial jamo; compare the matching modern finals explicitly.
+ const finalJamo = Array.from('ᆪᆬᆭᆰᆱᆲᆳᆴᆵᆶᆹ');
+ for (const [index, cluster] of clusters.entries()) {
+  assert.equal(commandParts(cluster), commandParts(finalJamo[index]), cluster);
+  for (const encoding of ['utf-8', 'cp949'])
+   assert.equal(decode(encode(cluster, encoding), encoding), cluster);
+ }
+ assert.equal(commandParts('ㅄ'), 'ㅂㅅ');
+ assert.equal(commandParts('ㄳ'), 'ㄱㅅ');
+});
+
+test('received standalone cluster commands execute as their component commands', async () => {
+ for (const source of ['ㅂ(ㄵ(65))', 'ㅂ(ㄴㅈ(65))', 'ㅂ(ᆬ(65))'])
+  assert.deepEqual((await output(source)).lines, ['ㅗ'], source);
+});
+
+test('all 11 cluster names are preserved when declared and across executions', async () => {
+ for (const cluster of clusters) {
+  const {vm, lines} = await output(`ㅒ ${cluster}=3\nㅒ 자리=ㅟ ${cluster}\nㅢ 자리=9\nㅂ(${cluster})`);
+  await vm.execute(`${cluster}=${cluster}+1\nㅂ(${cluster})`);
+  assert.deepEqual(lines, ['9', '10'], cluster);
+ }
+});
+
+test('cluster custom names expand before vanilla command decomposition', async () => {
+ for (const cluster of clusters)
+  assert.deepEqual((await output(`ㅊ${cluster}=ㅂ\n${cluster}(3)`)).lines, ['3'], cluster);
+});
+
+test('registered cluster word mapping wins over the same declared name', async () => {
+ const lines=[];
+ const vm = new Interpreter({ output: line => lines.push(line), wordAliases: new Map([['ㅄ', 'ㅂ']]) });
+ vm.globals.declare('ㅄ', 7n);
+ await vm.execute('ㅄ(3)');
+ assert.deepEqual(lines, ['3']);
+ assert.equal(vm.globals.lookup('ㅄ').read(), 7n);
+});
+
+test('cluster strings chars and comments retain original codepoints', async () => {
+ const spelling = clusters.join('');
+ const source = `# ${spelling}\n/* ${spelling} */\nㅂ("${spelling}",ㅐ("${spelling}"))\n`
+  + clusters.map(cluster => `ㅂ('${cluster}')`).join('\n');
+ assert.deepEqual((await output(source)).lines, [`${spelling} 11`, ...clusters]);
+});
+
+test('cluster spelling preserves source columns and does not invent call syntax', () => {
+ assert.throws(() => parse('  ㅂ(ㄵ(,))'), error => error instanceof ParseError && error.line === 1 && error.col === 7);
+ for (const source of ['ㅄ(3)', 'ㅂㅅ(3)'])
+  assert.throws(() => parse(source), ParseError);
+});
+
 test('complete, partial, canonical and filler spellings execute the same conditional', async () => {
  for(const header of ['몍','몌ㄱ','ㅁㅖㄱ','몍','ㅁᅨᆨ','ᄆㅖㄱ','ㅁᅟᅨᆨ','ㅁᅟᅨㄱ','ㅁㅤㅖᆨ']) {
   assert.deepEqual((await output(`${header}\nㅂ("실행")\nㅋ`)).lines,['실행'],header);
