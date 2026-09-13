@@ -1,6 +1,7 @@
 export interface ParseOptions {
     wordAliases?: ReadonlyMap<string, string>;
     declaredNames?: Iterable<string>;
+    disabledSymbols?: Iterable<string>;
 }
 export interface Node {
     kind: string;

@@ -124,6 +124,7 @@ export interface InterpreterOptions {
     maxSteps?: number;
     files?: MemoryFiles;
     wordAliases?: ReadonlyMap<string, string>;
+    disabledSymbols?: Iterable<string>;
 }
 type Validation = {
     inFunction: boolean;
@@ -133,6 +134,7 @@ type Validation = {
 };
 export declare class Interpreter {
     wordAliases: ReadonlyMap<string, string>;
+    readonly disabledSymbols: ReadonlySet<string>;
     output: (text: string) => void;
     input: (prompt: string) => MaybePromise<string>;
     readFile: (path: string) => MaybePromise<string>;

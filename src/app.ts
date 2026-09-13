@@ -1,5 +1,9 @@
 import { examples } from './examples.js';
 import type { Request, Reply } from './protocol.js';
+import { COMMANDS, CLUSTER_DEFAULTS, SYMBOLS, defaultSettings, applyTheme, wordAliases } from './settings.js';
+import { createSettingsPanel } from './settings-panel.js';
+import { createTextareaInputAssist } from './input-assist.js';
+import { SoundFeedback } from './feedback.js';
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const editor = element<HTMLTextAreaElement>('editor');
@@ -20,6 +24,9 @@ let outputCount = 0;
 let outputLimited = false;
 let saveTimer: ReturnType<typeof setTimeout> | undefined;
 let busy = false;
+let settings = defaultSettings();
+const sound = new SoundFeedback();
+const inputAssist = createTextareaInputAssist(editor, settings.assist);
 
 function status(text: string) { element('status').textContent = text; }
 function persist() {
@@ -49,6 +56,7 @@ function renderFiles() {
 }
 function renderEditor() {
   editor.value = files[active];
+  inputAssist.cancel();
   element('active-path').textContent = active.slice(1);
   refreshPosition(); renderFiles();
 }
@@ -69,6 +77,7 @@ function finish(message: string) {
 }
 function post(message: Request) { worker?.postMessage(message); }
 function showError(reply: Extract<Reply, { type: 'error' }>) {
+  sound.play('error');
   line(reply.message, 'output-error');
   if (reply.line && (!reply.path || reply.path === active)) {
     const lines = editor.value.split('\n');
@@ -81,6 +90,7 @@ function showError(reply: Extract<Reply, { type: 'error' }>) {
 }
 function run() {
   if (busy) return;
+  inputAssist.cancel(); sound.play('key');
   persist();
   output.replaceChildren(); outputCount = 0; outputLimited = false;
   busy = true; runButton.disabled = true; stopButton.disabled = false; status('실행 중');
@@ -93,24 +103,28 @@ function run() {
         else if (!outputLimited) { outputLimited = true; line('출력이 3,000줄을 넘어 화면 표시를 생략합니다. 프로그램은 계속 실행합니다.', 'output-note'); }
         break;
       case 'input':
+        sound.play('attention');
         pendingInput = data.id; inputForm.hidden = false;
         element('input-label').textContent = data.prompt || '입력'; programInput.value = ''; programInput.focus(); status('입력 대기'); break;
       case 'debug':
+        sound.play('attention');
         pendingDebug = data.id; debugPanel.hidden = false;
         element('debug-location').textContent = `${data.path.slice(1)} · ${data.line}행에서 정지`;
         element('debug-values').textContent = data.variables.map(([name, value]) => `${name} = ${value}`).join('\n') || '(현재 범위에 선언한 값 없음)';
         status('ㅙ 정지'); element('debug-continue').focus(); break;
       case 'file':
         files[data.path] = data.text;
-        if (data.path === active) { editor.value = data.text; refreshPosition(); }
+        if (data.path === active) { editor.value = data.text; inputAssist.cancel(); refreshPosition(); }
         renderFiles(); persist(); break;
       case 'done':
+        sound.play('done');
         line(`실행 완료 · ${data.elapsed.toFixed(1)} ms`, 'output-note'); finish('완료'); break;
       case 'error': showError(data); break;
     }
   };
   worker.onerror = event => { event.preventDefault(); showError({ type: 'error', message: `실행기 오류: ${event.message || '스크립트를 불러오지 못했습니다.'}` }); };
-  post({ type: 'run', source: editor.value, path: active, files, maxSteps: 1_000_000 });
+  post({ type: 'run', source: editor.value, path: active, files, maxSteps: 1_000_000,
+    wordAliases: wordAliases(settings), disabledSymbols: [...settings.disabledSymbols] });
 }
 
 try {
@@ -137,6 +151,7 @@ select.onchange = () => {
   renderEditor(); persist(); status('예제 준비됨');
 };
 editor.addEventListener('input', () => {
+  sound.play('key');
   refreshPosition(); clearTimeout(saveTimer); saveTimer = setTimeout(persist, 250);
 });
 editor.addEventListener('click', refreshPosition);
@@ -208,19 +223,27 @@ element('create-file').onclick = event => {
   }
   persist(); files[path] = ''; active = path; renderEditor(); persist();
 };
-const symbols = [
-  ['ㄱ','then'],['ㄲ','goto'],['ㄴ','not'],['ㄷ','return'],['ㄸ','while'],['ㄹ','continue'],['ㅁ','if'],['ㅂ','print'],['ㅃ','for'],['ㅅ','int'],['ㅆ','float'],['ㅇ','else'],['ㅈ','char'],['ㅉ','string'],['ㅊ','custom'],['ㅋ','end'],['ㅌ','list'],['ㅍ','pass'],['ㅎ','function'],['ㅏ','except'],['ㅑ','try'],['ㅓ','ref'],['ㅕ','value'],['ㅗ','false'],['ㅛ','label'],['ㅜ','nil'],['ㅠ','throw'],['ㅡ','break'],['ㅣ','or'],['ㅐ','len'],['ㅒ','new'],['ㅔ','in'],['ㅖ','true'],['ㅘ','and'],['ㅙ','check'],['ㅚ','import'],['ㅝ','typeof'],['ㅞ','where'],['ㅟ','address'],['ㅢ','deref']
-];
-for (const [symbol, description] of symbols) {
+function renderPalette() {
+element('jamo-keys').replaceChildren();
+const descriptions = new Map<string, string>(COMMANDS.map(([symbol, name]) => [symbol, name]));
+for (const symbol of SYMBOLS) {
+  const description = descriptions.get(symbol) ?? CLUSTER_DEFAULTS[symbol];
   const button = document.createElement('button'); button.type = 'button';
   const label = document.createElement('span'); label.textContent = symbol;
   const small = document.createElement('small'); small.textContent = description;
   button.append(label, small); button.setAttribute('aria-label', `${symbol} ${description} 넣기`);
-  button.onclick = () => {
-    const text = symbol === 'ㅁ' ? 'ㅁ ' : symbol;
-    editor.setRangeText(text, editor.selectionStart, editor.selectionEnd, 'end'); editor.focus(); editor.dispatchEvent(new Event('input'));
-  };
+  button.disabled = settings.disabledSymbols.includes(symbol) || Array.from(CLUSTER_DEFAULTS[symbol] ?? '').some(part => settings.disabledSymbols.includes(part));
+  button.onpointerdown = event => event.preventDefault();
+  button.onclick = () => inputAssist.insert(symbol);
   element('jamo-keys').append(button);
 }
+}
+const settingsPanel = createSettingsPanel(() => settings, next => {
+  settings = next; inputAssist.configure(next.assist); applyTheme(next);
+  sound.setVolume(next.sound.volume); sound.setEnabled(next.sound.enabled); sound.play('key');
+  renderPalette(); status(busy ? '설정 적용 · 다음 실행부터' : '설정 적용됨');
+});
+element('settings-placeholder').onclick = () => settingsPanel.open();
+applyTheme(settings); renderPalette();
 window.addEventListener('beforeunload', persist);
 renderEditor();

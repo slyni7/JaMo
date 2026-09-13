@@ -282,10 +282,12 @@ export interface InterpreterOptions {
   maxSteps?: number;
   files?: MemoryFiles;
   wordAliases?: ReadonlyMap<string, string>;
+  disabledSymbols?: Iterable<string>;
 }
 type Validation = {inFunction: boolean; loopDepth: number; inHandler: boolean; visibleLabels: Set<string>};
 export class Interpreter {
   wordAliases: ReadonlyMap<string, string> = new Map();
+  readonly disabledSymbols: ReadonlySet<string>;
   output: (text: string) => void; input: (prompt: string) => MaybePromise<string>;
   readFile: (path: string) => MaybePromise<string>; writeFile: (path: string, text: string) => MaybePromise<void>;
   debugger?: InterpreterOptions['debugger']; maxSteps: number; steps = 0;
@@ -295,6 +297,7 @@ export class Interpreter {
   readonly loopBindings = 'fresh';
   constructor(options: InterpreterOptions = {}) {
     this.wordAliases = new Map(options.wordAliases ?? []);
+    this.disabledSymbols = new Set(options.disabledSymbols ?? []);
     this.output = options.output ?? (text => console.log(text));
     this.input = options.input ?? (() => { throw new InputEOF(); });
     this.files = options.files ?? new MemoryFiles(); this.readFile = options.readFile ?? this.files.readFile;
@@ -377,7 +380,7 @@ export class Interpreter {
     const declaredNames = new Set<string>();
     for (let scope: Env | null = target; scope; scope = scope.parent)
       for (const name of scope.cells.keys()) declaredNames.add(name);
-    try { const nodes = parse(source, { declaredNames, wordAliases: this.wordAliases }); this.validate(nodes); await this.block(nodes, target); }
+    try { const nodes = parse(source, { declaredNames, wordAliases: this.wordAliases, disabledSymbols: this.disabledSymbols }); this.validate(nodes); await this.block(nodes, target); }
     catch (error) {
       if (error instanceof ParseError) { if (!(error as any).path) (error as any).path = this.path; throw error; }
       if (error instanceof Fault) { if (error.path === null) error.path = this.path; throw error; }

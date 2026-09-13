@@ -1,4 +1,5 @@
-export type RunRequest = { type: 'run'; source: string; path: string; files: Record<string, string>; maxSteps: number };
+export type RunRequest = { type: 'run'; source: string; path: string; files: Record<string, string>; maxSteps: number;
+  wordAliases?: [string, string][]; disabledSymbols?: string[] };
 export type Request = RunRequest | { type: 'input'; id: number; value: string; closed?: boolean } | { type: 'debug'; id: number; action: 'continue' | 'abort' };
 export type Reply =
   | { type: 'output'; text: string }

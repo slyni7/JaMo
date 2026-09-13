@@ -1,0 +1,21 @@
+{
+  "environment": "Codex in-app browser, local site build",
+  "method": "Actual UI interactions through CUA; DOM observations and screenshots",
+  "passed": 10,
+  "total": 10,
+  "cases": [
+    {"name": "settings defaults and fixed symbols", "observed": "Dialog opens; 300ms, sound off at 20%, 51 symbol rows enabled; functions are read-only and aliases editable"},
+    {"name": "disabled command through alias", "source": "출력(\"차단 확인\")", "settings": "ㅂ disabled, 출력 alias of ㅂ", "observed": "Worker reports 설정에서 꺼진 자모 'ㅂ'은 명령으로 실행할 수 없습니다"},
+    {"name": "aliases and yo compression", "source": "if true then\n출력(\"별칭 성공\")\nend\n묙(ㅖ)\nprint(\"압축 유지\")\nㅋ", "settings": "ㅂ enabled; English aliases plus 출력", "observed": ["별칭 성공", "압축 유지", "완료"]},
+    {"name": "duplicate aliases rejected", "settings": "print assigned to both ㅂ and ㅅ", "observed": "Apply keeps the dialog open with duplicate-alias alert"},
+    {"name": "theme preview cancellation", "observed": "Apply night, preview contrast, cancel: document theme returns to night after dialog closes"},
+    {"name": "palette cluster input", "settings": "assist enabled, 300ms", "observed": "In an empty editor with collapsed selection, ㅂ then ㅅ at a measured 283ms event gap produces ㅄ; replacement of selected text does not combine"},
+    {"name": "symbol presets", "observed": ["핵심 18개 selects 18 / 51", "기본 40개 selects 40 / 51"]},
+    {"name": "320px viewport", "observed": {"viewport": 320, "pageScrollWidth": 305, "dialogWidth": 285, "dialogScrollWidth": 268, "symbolRows": 51, "usageLabelWraps": false}},
+    {"name": "390px high-contrast viewport", "observed": {"viewport": 390, "pageScrollWidth": 375, "dialogWidth": 355, "dialogScrollWidth": 338, "horizontalOverflow": false}},
+    {"name": "sound controls", "observed": "Enable sound, click preview, disable sound; browser console has no warnings/errors", "scope": "Control path only; audible output not verified"}
+  ],
+  "preserved": ["Fixed 40 command meanings and 11 cluster decompositions", "Yo compression", "Aliases before declared names before jamo decomposition", "Existing workspace file storage"],
+  "not_tested": ["Physical Android/iPhone IME", "Actual speaker output", "All browser versions", "Every combination of settings"],
+  "not_implemented": ["Persistent preference storage; preferences reset on reload", "Function reassignment is excluded by user decision"]
+}

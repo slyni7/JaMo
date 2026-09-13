@@ -27,4 +27,21 @@ export function commandParts(char) {
 export function decomposableSpelling(text) {
     return text.length > 0 && Array.from(text).every(char => commandParts(char) !== null);
 }
+/** Preserve a compound-final slot so settings can disable its fixed expansion. */
+export function commandSymbols(char) {
+    const parts = commandParts(char);
+    if (parts === null)
+        return null;
+    if (CLUSTERS.has(char))
+        return char;
+    const point = char.codePointAt(0);
+    const prefix = point >= 0xac00 && point <= 0xd7a3 ? parts.slice(0, 2) : '';
+    const ending = prefix ? parts.slice(2) : parts;
+    if (ending.length === 2 && (prefix || (point >= 0x11a8 && point <= 0x11c2))) {
+        for (const [cluster, expansion] of CLUSTERS)
+            if (expansion === ending)
+                return prefix + cluster;
+    }
+    return parts;
+}
 //# sourceMappingURL=hangul.js.map

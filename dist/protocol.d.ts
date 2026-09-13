@@ -4,6 +4,8 @@ export type RunRequest = {
     path: string;
     files: Record<string, string>;
     maxSteps: number;
+    wordAliases?: [string, string][];
+    disabledSymbols?: string[];
 };
 export type Request = RunRequest | {
     type: 'input';

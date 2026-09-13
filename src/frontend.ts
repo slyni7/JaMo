@@ -1,9 +1,10 @@
 /** Direct lexer/Pratt parser port. No source normalization or JS evaluation. */
-import { commandParts, decomposableSpelling } from './hangul.js';
+import { commandParts, commandSymbols, decomposableSpelling } from './hangul.js';
 
 export interface ParseOptions {
   wordAliases?: ReadonlyMap<string, string>;
   declaredNames?: Iterable<string>;
+  disabledSymbols?: Iterable<string>;
 }
 export interface Node {
   kind: string;
@@ -32,6 +33,7 @@ interface Token {
   macroChain?: string[];
   comboDepth?: number;
   clusterContinuation?: boolean;
+  origins?: string[];
 }
 
 export const KEYWORDS = new Set(Array.from("ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖㅘㅙㅚㅝㅞㅟㅢ"));
@@ -231,9 +233,11 @@ function spellingTokens(token: Token): Token[] {
   const result: Token[] = [];
   const chars = Array.from(token.value as string);
   chars.forEach((char, offset) => {
+    const symbols = Array.from(commandSymbols(char)!);
     const parts = Array.from(commandParts(char)!);
     parts.forEach((part, index) => result.push({ ...token, kind: part, value: part,
       col: token.col + offset, sourceEnd: token.col + offset + 1,
+      origins: [...(token.origins ?? []), ...symbols],
       clusterContinuation: index > 0 && CONSONANTS.has(part) && CONSONANTS.has(parts[index - 1]),
       whitespaceAfter: offset === chars.length - 1 && index === parts.length - 1 ? token.whitespaceAfter : false }));
   });
@@ -254,6 +258,7 @@ function packCombos(tokens: Token[]): Token[] {
     while (tokens[index + 3]?.clusterContinuation)
       suffix.push(tokens.splice(index + 3, 1)[0]);
     result.push({ ...first, kind: "COMBO", value: { prefix: [first], suffix },
+      origins: [first, middle, ...suffix].flatMap(part => part.origins ?? [part.kind]),
       sourceEnd: suffix.at(-1)!.sourceEnd, whitespaceAfter: suffix.at(-1)!.whitespaceAfter });
     index += 2;
   }
@@ -263,16 +268,27 @@ function packCombos(tokens: Token[]): Token[] {
 /** Word mappings precede declared spellings; only the remaining Hangul is command text. */
 function resolveSpellings(raw: Token[], options: ParseOptions): Token[] {
   const aliases = options.wordAliases ?? new Map<string, string>();
+  const disabled = new Set(options.disabledSymbols ?? []);
+  const slots = new Set([...KEYWORDS, ...Array.from('ㄳㄵㄶㄺㄻㄼㄽㄾㄿㅀㅄ')]);
+  for (const symbol of disabled) if (!slots.has(symbol)) throw new ParseError(`알 수 없는 자모 설정: ${symbol}`, 1, 1);
+  const mappedToken = (token: Token): Token[] => {
+    if (!slots.has(token.kind)) return [token];
+    const parts = Array.from(commandParts(token.kind)!);
+    return parts.map((part, index) => ({ ...token, kind: part, value: part,
+      origins: [...(token.origins ?? []), token.kind],
+      ifWord: part === 'ㅁ' && parts.length === 1 ? token.ifWord : undefined,
+      whitespaceAfter: index === parts.length - 1 ? token.whitespaceAfter : false }));
+  };
   const tokens: Token[] = [];
   for (const token of raw) {
-    if (token.kind !== "NAME" || !aliases.has(token.value)) { tokens.push(token); continue; }
+    if (token.kind !== "NAME" || !aliases.has(token.value)) { appendTokens(tokens, mappedToken(token)); continue; }
     const spelling = aliases.get(token.value)!;
     const parts = Array.from(spelling);
-    if (!parts.length || parts.some(part => !KEYWORDS.has(part)))
+    if (!parts.length || parts.some(part => !slots.has(part)))
       throw new ParseError(`대응단어 '${token.value}'에는 배정된 자모 명령이 필요합니다`, token.line, token.col);
-    parts.forEach((part, index) => tokens.push({ ...token, kind: part, value: part,
-      ifWord: part === "ㅁ" && parts.length === 1 ? token.value : undefined,
-      whitespaceAfter: index === parts.length - 1 ? token.whitespaceAfter : false }));
+    parts.forEach((part, index) => appendTokens(tokens, mappedToken({ ...token, kind: part, value: part,
+      ifWord: parts.length === 1 ? token.value : undefined,
+      whitespaceAfter: index === parts.length - 1 ? token.whitespaceAfter : false })));
   }
   // Recognizing a declaration's spelling does not execute it or change runtime scopes.
   const names = new Set(["입력", "범위", "추가", "삽입", "삭제", "복사", "읽기", "쓰기", "자신", ...(options.declaredNames ?? [])]);
@@ -348,6 +364,10 @@ function resolveSpellings(raw: Token[], options: ParseOptions): Token[] {
     }
     appendTokens(result, spellingTokens(token));
   });
+  for (const token of result) {
+    const prohibited = [...(token.origins ?? []), token.kind].find(symbol => disabled.has(symbol));
+    if (prohibited) throw new ParseError(`설정에서 꺼진 자모 '${prohibited}'은 명령으로 실행할 수 없습니다`, token.line, token.col);
+  }
   return packCombos(result.map(token => ({ ...token, sourceEnd: token.sourceEnd ?? token.col + 1 })));
 }
 
