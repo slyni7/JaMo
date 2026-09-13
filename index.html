@@ -42,7 +42,7 @@
     <details class="palette"><summary>자모 키보드 <span>눌러서 코드에 넣기</span></summary><div id="jamo-keys"></div></details>
     <footer><span>ㅊ · 새로운 기능은 당신의 이름으로.</span><span>파일은 이 브라우저에서 실행됩니다.</span></footer>
   </main>
-  <dialog id="new-file-dialog"><form method="dialog"><h2>새 파일</h2><label>파일 이름<input id="new-file-name" value="새파일.txt" required></label><p id="new-file-error" role="alert"></p><div><button value="cancel">취소</button><button id="create-file" class="primary" value="create">만들기</button></div></form></dialog>
+  <dialog id="new-file-dialog"><form id="new-file-form" method="dialog"><h2>새 파일</h2><label>파일 이름<input id="new-file-name" value="새파일.txt" required></label><p id="new-file-error" role="alert"></p><div><button id="cancel-new-file" type="button">취소</button><button id="create-file" type="submit" class="primary" value="create">만들기</button></div></form></dialog>
   <dialog id="settings-dialog" aria-labelledby="settings-title">
     <form id="settings-form">
       <div class="settings-heading"><h2 id="settings-title">내 JaMo 설정</h2><button id="settings-close" type="button" aria-label="설정 닫기">닫기</button></div>
