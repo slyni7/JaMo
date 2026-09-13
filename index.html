@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eeede7">
+  <title>JaMo · 한글로 만드는 언어</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./"><span class="brand-mark">ㅊ</span><span>JaMo<small>한글로 만드는 언어</small></span></a>
+    <span class="edition">40개의 시작, 그다음은 당신의 문법.</span>
+    <button id="guide-toggle" class="quiet" aria-expanded="false" aria-controls="guide">문법 안내</button>
+  </header>
+  <section id="guide" class="guide" hidden>
+    <div><strong>짧게 적고, 바로 실행</strong><p><code>ㅒ 이름 = 값</code>으로 선언하고 <code>ㅂ(값)</code>으로 출력합니다. 블록은 <code>ㅋ</code>로 닫습니다.</p></div>
+    <div><strong>만약 · 반복 · 함수</strong><p><code>ㅁ 조건 ㄱ</code> · <code>ㅃ 이름 ㅔ 목록</code> · <code>ㅎ 이름(인자)</code>. <code>ㄷ</code>은 반환, <code>ㄹ</code>은 다음 반복입니다.</p></div>
+    <div><strong>나만의 기능과 자료형</strong><p><code>ㅊ챣 … ㅋ</code>은 <code>챣</code>으로 펼치는 새 구문. <code>ㅊ사람(이름값) … ㅋ</code>은 필드와 메서드를 담는 새 자료형입니다.</p></div>
+  </section>
+  <main>
+    <div class="intro"><div><p class="eyebrow">JaMo LANGUAGE / PLAYGROUND</p><h1>생각을 적는 가장 가까운 문자.</h1></div><p>한글과 자모로 코드를 쓰고<br>이 창에서 실행해 보세요.</p></div>
+    <div class="toolbar">
+      <label class="example-control">예제 <select id="examples" aria-label="예제 선택"></select></label>
+      <div class="toolbar-files"><button id="open">파일 열기</button><button id="new">새 파일</button><button id="download">내려받기</button></div>
+      <div class="run-controls"><span id="status" role="status" aria-live="polite">준비됨</span><button id="stop" disabled>중단</button><button id="run" class="primary">실행 <kbd>Ctrl ↵</kbd></button></div>
+      <input id="file-picker" type="file" accept=".txt,text/plain" multiple hidden>
+    </div>
+    <div class="workspace">
+      <aside class="files-panel"><div class="panel-label">열린 파일 <span id="file-count">1</span></div><nav id="files" aria-label="열린 파일"></nav><p class="storage-note" id="storage-note">이 브라우저에 자동 저장됩니다.<br>파일로 보관하려면 내려받으세요.</p></aside>
+      <section class="editor-panel"><div class="panel-label"><span id="active-path">시작.txt</span><span>UTF-8</span></div><div class="editor-wrap"><pre id="line-numbers" aria-hidden="true">1</pre><textarea id="editor" aria-label="소스 코드" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea></div><div class="editor-footer"><span id="cursor">1행 1열</span><span>한·영 전환 없이, 자모 그대로</span></div></section>
+      <section class="output-panel"><div class="panel-label"><span>실행 결과</span><button id="clear-output" class="text-button">지우기</button></div><div id="output" role="log" aria-live="polite"><p class="output-placeholder">코드의 다음 장면이<br>여기에 나타납니다.</p></div><form id="input-form" hidden><label id="input-label" for="program-input">입력</label><div><input id="program-input" autocomplete="off"><button class="primary" type="submit">보내기</button></div><button id="input-eof" class="text-button" type="button">입력 끝내기</button></form><div id="debug-panel" hidden><strong id="debug-location"></strong><pre id="debug-values"></pre><button id="debug-continue" class="primary">계속</button></div></section>
+    </div>
+    <details class="palette"><summary>자모 키보드 <span>눌러서 코드에 넣기</span></summary><div id="jamo-keys"></div></details>
+    <footer><span>ㅊ · 새로운 기능은 당신의 이름으로.</span><span>파일은 이 브라우저에서 실행됩니다.</span></footer>
+  </main>
+  <dialog id="new-file-dialog"><form method="dialog"><h2>새 파일</h2><label>파일 이름<input id="new-file-name" value="새파일.txt" required></label><p id="new-file-error" role="alert"></p><div><button value="cancel">취소</button><button id="create-file" class="primary" value="create">만들기</button></div></form></dialog>
+  <script type="module" src="./dist/app.js"></script>
+</body>
+</html>
