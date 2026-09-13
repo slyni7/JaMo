@@ -13,7 +13,7 @@
     <span class="edition">40개의 시작, 그다음은 당신의 문법.</span>
     <div class="header-actions">
       <button id="guide-toggle" class="quiet" aria-expanded="false" aria-controls="guide">문법 안내</button>
-      <button id="settings-placeholder" class="settings-button" type="button" aria-label="설정 (준비 중)" title="설정 (준비 중)" disabled>
+      <button id="settings-placeholder" class="settings-button" type="button" aria-label="설정" title="설정" aria-haspopup="dialog" aria-controls="settings-dialog">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="m9.5 3-.5 2-1.5.9-2-.6L3 9.6l1.5 1.4v2L3 14.4l2.5 4.3 2-.6L9 19l.5 2h5l.5-2 1.5-.9 2 .6 2.5-4.3-1.5-1.4v-2L21 9.6l-2.5-4.3-2 .6L15 5l-.5-2z"/>
           <circle cx="12" cy="12" r="3"/>
@@ -43,6 +43,41 @@
     <footer><span>ㅊ · 새로운 기능은 당신의 이름으로.</span><span>파일은 이 브라우저에서 실행됩니다.</span></footer>
   </main>
   <dialog id="new-file-dialog"><form method="dialog"><h2>새 파일</h2><label>파일 이름<input id="new-file-name" value="새파일.txt" required></label><p id="new-file-error" role="alert"></p><div><button value="cancel">취소</button><button id="create-file" class="primary" value="create">만들기</button></div></form></dialog>
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <form id="settings-form">
+      <div class="settings-heading"><h2 id="settings-title">내 JaMo 설정</h2><button id="settings-close" type="button" aria-label="설정 닫기">닫기</button></div>
+      <p class="settings-description">입력 방법과 사용할 문법을 직접 고르세요. 변경은 적용 후 다음 실행부터 사용합니다.</p>
+      <div class="settings-grid">
+        <fieldset class="settings-section"><legend>접근성 · 겹자모 입력</legend>
+          <label class="check-label"><input id="assist-enabled" type="checkbox">연속 자음을 겹자모로 결합</label>
+          <label for="assist-delay">결합 시간 (ms)</label><input id="assist-delay" type="number" min="0" max="2000" step="1" value="300">
+          <p class="settings-hint">첫 글자는 바로 표시합니다. 정한 시간 안에 ㅂ → ㅅ을 입력하면 ㅄ으로 결합합니다. 붙여넣기와 입력기 조합 중인 글자는 바꾸지 않습니다.</p>
+        </fieldset>
+        <fieldset class="settings-section"><legend>스킨 · 색깔</legend>
+          <label for="skin-theme">스킨</label><select id="skin-theme"><option value="paper">종이</option><option value="night">밤</option><option value="contrast">고대비</option></select>
+          <label for="skin-accent">강조색</label><input id="skin-accent" type="color" value="#36574d">
+        </fieldset>
+        <fieldset class="settings-section"><legend>사운드</legend>
+          <label class="check-label"><input id="sound-enabled" type="checkbox">입력·실행 알림 소리</label>
+          <label for="sound-volume">음량 <output id="sound-volume-value">20%</output></label><input id="sound-volume" type="range" min="0" max="100" value="20">
+          <button id="sound-preview" type="button">소리 미리 듣기</button>
+        </fieldset>
+        <fieldset class="settings-section"><legend>사용할 자모</legend>
+          <label for="symbol-preset">시작 구성</label><select id="symbol-preset"><option value="all">전체 51개</option><option value="core">핵심 18개</option><option value="forty">기본 40개</option><option value="none">모두 끄기</option><option value="custom">직접 선택</option></select>
+          <p><output id="symbol-count" aria-live="polite">51 / 51개 사용</output></p>
+          <p class="settings-hint">꺼진 자모가 명령으로 사용되면 실행을 거부합니다. 대응단어·매크로·모아쓰기도 같은 제한을 받습니다. 문자열·주석·선언한 이름은 그대로입니다.</p>
+        </fieldset>
+      </div>
+      <fieldset class="settings-section"><legend>40 + 11개 · 기능과 대응단어</legend>
+        <p class="settings-hint">자모의 기능과 ㅛ 조합 규칙은 고정입니다. 연결할 한글·영문 단어만 쉼표로 나누어 편집하세요. 대응단어는 선언된 이름보다 우선하며, 중복 별칭은 적용할 수 없습니다.</p>
+        <div class="settings-tools"><button id="aliases-english" type="button">영문 별칭 넣기</button><button id="aliases-korean" type="button">한글 별칭 넣기</button><button id="aliases-clear" type="button">별칭 비우기</button></div>
+        <div id="symbol-settings" class="symbol-list"></div>
+      </fieldset>
+      <p id="settings-error" role="alert"></p>
+      <p id="settings-storage-note" class="settings-hint">현재 창에서 적용됩니다. 저장 방식은 아직 연결하지 않았습니다.</p>
+      <div class="settings-actions"><button id="settings-reset" type="button">기본값 불러오기</button><button id="settings-cancel" type="button">취소</button><button class="primary" type="submit">적용</button></div>
+    </form>
+  </dialog>
   <script type="module" src="./dist/app.js"></script>
 </body>
 </html>

@@ -473,6 +473,7 @@ function sliceIndices(length, start, stop, step) {
 }
 export class Interpreter {
     wordAliases = new Map();
+    disabledSymbols;
     output;
     input;
     readFile;
@@ -492,6 +493,7 @@ export class Interpreter {
     loopBindings = 'fresh';
     constructor(options = {}) {
         this.wordAliases = new Map(options.wordAliases ?? []);
+        this.disabledSymbols = new Set(options.disabledSymbols ?? []);
         this.output = options.output ?? (text => console.log(text));
         this.input = options.input ?? (() => { throw new InputEOF(); });
         this.files = options.files ?? new MemoryFiles();
@@ -625,7 +627,7 @@ export class Interpreter {
             for (const name of scope.cells.keys())
                 declaredNames.add(name);
         try {
-            const nodes = parse(source, { declaredNames, wordAliases: this.wordAliases });
+            const nodes = parse(source, { declaredNames, wordAliases: this.wordAliases, disabledSymbols: this.disabledSymbols });
             this.validate(nodes);
             await this.block(nodes, target);
         }

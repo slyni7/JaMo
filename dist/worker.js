@@ -29,6 +29,8 @@ scope.onmessage = async ({ data }) => {
     files.set(data.path, data.source);
     const started = performance.now();
     const vm = new Interpreter({
+        wordAliases: new Map(data.wordAliases ?? []),
+        disabledSymbols: data.disabledSymbols ?? [],
         maxSteps: data.maxSteps,
         output: text => send({ type: 'output', text }),
         input: prompt => new Promise((resolve, reject) => {
