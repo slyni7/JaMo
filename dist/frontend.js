@@ -73,8 +73,7 @@ class Lexer {
     }
     pair() { return this.chars.slice(this.pos, this.pos + 2).join(""); }
     newline() {
-        if (this.delimiters.length === 0)
-            this.emit("SEP", "\n");
+        this.emit(this.delimiters.length === 0 ? "SEP" : "SOFT_NL", "\n");
         this.advance();
     }
     string() {
@@ -244,6 +243,43 @@ class Lexer {
         return this.tokens;
     }
 }
+const CONSONANTS = new Set(Array.from("ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"));
+function spellingTokens(token) {
+    if (token.kind !== "NAME" || !decomposableSpelling(token.value))
+        return [{ ...token, sourceEnd: token.sourceEnd ?? token.col + 1 }];
+    const result = [];
+    const chars = Array.from(token.value);
+    chars.forEach((char, offset) => {
+        const parts = Array.from(commandParts(char));
+        parts.forEach((part, index) => result.push({ ...token, kind: part, value: part,
+            col: token.col + offset, sourceEnd: token.col + offset + 1,
+            clusterContinuation: index > 0 && CONSONANTS.has(part) && CONSONANTS.has(parts[index - 1]),
+            whitespaceAfter: offset === chars.length - 1 && index === parts.length - 1 ? token.whitespaceAfter : false }));
+    });
+    return result;
+}
+/** Adjacency is source adjacency, never adjacency created by removing whitespace/comments. */
+function packCombos(tokens) {
+    const adjacent = (left, right) => right && left.line === right.line
+        && !left.whitespaceAfter && (left.col === right.col || left.sourceEnd === right.col);
+    const result = [];
+    for (let index = 0; index < tokens.length; index++) {
+        const first = tokens[index], middle = tokens[index + 1], last = tokens[index + 2];
+        if (!CONSONANTS.has(first.kind) || middle?.kind !== "ㅛ" || !CONSONANTS.has(last?.kind)
+            || !adjacent(first, middle) || !adjacent(middle, last)) {
+            result.push(first);
+            continue;
+        }
+        const suffix = [last];
+        // A compound final is one source character, and retains both of its command parts.
+        while (tokens[index + 3]?.clusterContinuation)
+            suffix.push(tokens.splice(index + 3, 1)[0]);
+        result.push({ ...first, kind: "COMBO", value: { prefix: [first], suffix },
+            sourceEnd: suffix.at(-1).sourceEnd, whitespaceAfter: suffix.at(-1).whitespaceAfter });
+        index += 2;
+    }
+    return result;
+}
 /** Word mappings precede declared spellings; only the remaining Hangul is command text. */
 function resolveSpellings(raw, options) {
     const aliases = options.wordAliases ?? new Map();
@@ -265,6 +301,23 @@ function resolveSpellings(raw, options) {
     const names = new Set(["입력", "범위", "추가", "삽입", "삭제", "복사", "읽기", "쓰기", "자신", ...(options.declaredNames ?? [])]);
     const namePositions = new Set();
     const macroTails = new Map();
+    const commandAt = (index) => {
+        if (tokens[index].kind === "NAME" && names.has(tokens[index].value))
+            return { token: tokens[index], next: index + 1 };
+        const probe = [];
+        let next = index;
+        while (next < tokens.length && next < index + 3) {
+            const candidate = tokens[next];
+            if (next > index && candidate.kind === "NAME" && !decomposableSpelling(candidate.value))
+                break;
+            appendTokens(probe, candidate.kind === "NAME" && names.has(candidate.value) ? [candidate] : spellingTokens(candidate));
+            next++;
+            if (probe.length >= 3)
+                break;
+        }
+        const packed = packCombos(probe)[0];
+        return packed?.kind === "COMBO" ? { token: packed, next } : { token: tokens[index], next: index + 1 };
+    };
     const introduce = (index, register = true) => {
         if (tokens[index]?.kind !== "NAME")
             return;
@@ -272,66 +325,113 @@ function resolveSpellings(raw, options) {
         if (register)
             names.add(tokens[index].value);
     };
-    for (let index = 0; index < tokens.length; index++) {
-        if (tokens[index].kind === "ㅊ" && tokens[index + 1]?.kind === "NAME" && tokens[index + 2]?.kind === "=") {
-            let end = index + 3;
-            while (end < tokens.length && !["SEP", "EOF"].includes(tokens[end].kind))
-                end++;
-            if (end > index + 3)
-                macroTails.set(tokens[index + 1].value, tokens[end - 1]);
-            else
-                macroTails.delete(tokens[index + 1].value);
-        }
-        // A custom spelling may introduce a declaration: ㅊ소개=ㅒ; 소개 몍=7.
-        let effective = tokens[index];
-        const visited = new Set();
-        while (effective.kind === "NAME" && macroTails.has(effective.value) && !visited.has(effective.value)
-            && visited.size < MAX_SYNTAX_DEPTH) {
-            visited.add(effective.value);
-            effective = macroTails.get(effective.value);
-        }
-        const kind = effective.kind;
-        if (["ㅒ", "ㅎ", "ㅊ", "ㅃ", "ㅏ", "ㅛ", "ㄲ"].includes(kind))
-            introduce(index + 1);
-        if (kind === ".")
-            introduce(index + 1, false);
-        if (tokens[index + 1]?.kind === "=>")
-            introduce(index);
-        if (kind === "ㅚ" && ["STRING", "CHAR"].includes(tokens[index + 1]?.kind)) {
-            introduce(index + 2);
-            if (tokens[index + 2]?.kind !== "NAME") {
-                const basename = String(tokens[index + 1].value).replaceAll('\\', '/').split('/').at(-1);
-                const dot = basename.lastIndexOf('.');
-                names.add(dot > 0 && dot < basename.length - 1 ? basename.slice(0, dot) : basename);
+    const collect = (combos) => {
+        for (let index = 0; index < tokens.length; index++) {
+            if (tokens[index].kind === "ㅊ" && tokens[index + 1]?.kind === "NAME" && tokens[index + 2]?.kind === "=") {
+                let end = index + 3;
+                while (end < tokens.length && !["SEP", "EOF"].includes(tokens[end].kind))
+                    end++;
+                const body = packCombos(tokens.slice(index + 3, end).flatMap(token => token.kind === "NAME" && names.has(token.value) ? [token] : spellingTokens(token)));
+                if (body.length)
+                    macroTails.set(tokens[index + 1].value, body.at(-1).kind === "COMBO" ? body.at(-1) : tokens[end - 1]);
+                else
+                    macroTails.delete(tokens[index + 1].value);
+            }
+            // A custom spelling may introduce a declaration: ㅊ소개=ㅒ; 소개 몍=7.
+            const command = combos ? commandAt(index) : { token: tokens[index], next: index + 1 };
+            let effective = command.token;
+            const visited = new Set();
+            while (effective.kind === "NAME" && macroTails.has(effective.value) && !visited.has(effective.value)
+                && visited.size < MAX_SYNTAX_DEPTH) {
+                visited.add(effective.value);
+                effective = macroTails.get(effective.value);
+            }
+            const combo = effective.kind === "COMBO";
+            const kind = combo ? effective.value.prefix[0].kind : effective.kind;
+            let next = command.next;
+            if ((combo || kind === "ㅛ") && tokens[next]?.kind === "(")
+                next++;
+            while (tokens[next]?.kind === "SOFT_NL")
+                next++;
+            if (["ㅒ", "ㅎ", "ㅊ", "ㅃ", "ㅏ", "ㅛ", "ㄲ"].includes(kind))
+                introduce(next);
+            if (kind === ".")
+                introduce(index + 1, false);
+            if (tokens[index + 1]?.kind === "=>")
+                introduce(index);
+            if (kind === "ㅚ" && ["STRING", "CHAR"].includes(tokens[index + 1]?.kind)) {
+                introduce(index + 2);
+                if (tokens[index + 2]?.kind !== "NAME") {
+                    const basename = String(tokens[index + 1].value).replaceAll('\\', '/').split('/').at(-1);
+                    const dot = basename.lastIndexOf('.');
+                    names.add(dot > 0 && dot < basename.length - 1 ? basename.slice(0, dot) : basename);
+                }
+            }
+            if (["ㅎ", "ㅊ"].includes(kind) && tokens[next + 1]?.kind === "(") {
+                let cursor = next + 2;
+                while (cursor < tokens.length && ![")", "SEP", "EOF"].includes(tokens[cursor].kind)) {
+                    introduce(cursor);
+                    cursor++;
+                }
             }
         }
-        if (["ㅎ", "ㅊ"].includes(kind) && tokens[index + 2]?.kind === "(") {
-            let cursor = index + 3;
-            while (cursor < tokens.length && ![")", "SEP", "EOF"].includes(tokens[cursor].kind)) {
-                introduce(cursor);
-                cursor++;
-            }
-        }
-    }
+    };
+    collect(false);
+    macroTails.clear();
+    collect(true);
     const result = [];
     tokens.forEach((token, index) => {
         if (token.kind !== "NAME" || namePositions.has(index) || names.has(token.value) || !decomposableSpelling(token.value)) {
             result.push(token);
             return;
         }
-        const chars = Array.from(token.value);
-        chars.forEach((char, offset) => {
-            const parts = Array.from(commandParts(char));
-            parts.forEach((part, partIndex) => result.push({ kind: part, value: part, line: token.line, col: token.col + offset,
-                whitespaceAfter: offset === chars.length - 1 && partIndex === parts.length - 1 ? token.whitespaceAfter : false }));
-        });
+        appendTokens(result, spellingTokens(token));
     });
-    return result;
+    return packCombos(result.map(token => ({ ...token, sourceEnd: token.sourceEnd ?? token.col + 1 })));
 }
 export const MAX_MACRO_EXPANSION_TOKENS = 1_000_000;
 function appendTokens(target, source) {
     for (const token of source)
         target.push(token);
+}
+/** The wrapper supplies a token payload; it does not add expression parentheses. */
+function expandCombo(tokens, start) {
+    const token = tokens[start], depth = token.comboDepth ?? 0;
+    if (depth >= MAX_SYNTAX_DEPTH)
+        throw new ParseError(`ㅛ 조합 중첩 한도 ${MAX_SYNTAX_DEPTH}단계를 넘었습니다`, token.line, token.col);
+    const wrapped = tokens[start + 1]?.kind === "(";
+    const begin = start + (wrapped ? 2 : 1);
+    let end = begin, nesting = 0;
+    const payload = [];
+    for (; end < tokens.length; end++) {
+        const part = tokens[end];
+        if (nesting === 0 && (wrapped ? part.kind === ")" : ["SEP", "SOFT_NL", "EOF", ")", "]"].includes(part.kind)))
+            break;
+        if (part.kind === "EOF")
+            break;
+        if (part.kind === "SOFT_NL") {
+            // Removing the outer wrapper restores physical statement lines inside whole blocks.
+            if (wrapped && nesting === 0 && token.value.suffix.some((item) => item.kind === "ㅋ"))
+                payload.push({ ...part, kind: "SEP" });
+            continue;
+        }
+        if (["(", "["].includes(part.kind))
+            nesting++;
+        else if ([")", "]"].includes(part.kind))
+            nesting--;
+        payload.push(part.kind === "COMBO" ? { ...part, comboDepth: depth + 1 } : part);
+    }
+    if (wrapped && tokens[end]?.kind !== ")")
+        throw new ParseError("ㅛ 조합의 내용을 닫는 )가 없습니다", token.line, token.col);
+    const origin = (part) => ({ ...part, line: token.line, col: token.col,
+        macroChain: token.macroChain, comboDepth: depth });
+    return { body: [...token.value.prefix.map(origin), ...payload, ...token.value.suffix.map(origin)],
+        end: wrapped ? end + 1 : end };
+}
+function spliceTokens(tokens, start, count, body) {
+    tokens.splice(start, count);
+    for (let offset = 0; offset < body.length; offset += 4096)
+        tokens.splice(start + offset, 0, ...body.slice(offset, offset + 4096));
 }
 /** Sequential lexical macros. The parser receives only expanded language tokens. */
 class MacroProcessor {
@@ -348,6 +448,7 @@ class MacroProcessor {
         if (this.produced > MAX_MACRO_EXPANSION_TOKENS)
             throw new ParseError(`custom 확장 토큰 한도 ${MAX_MACRO_EXPANSION_TOKENS}개를 넘었습니다`, token.line, token.col);
         return body.map((part, index) => ({ ...part, line: token.line, col: token.col,
+            macroChain: [...chain, token.value],
             // Word aliases retain their invocation boundary; the native ㅁ does not need whitespace.
             ifWord: body.length === 1 && ["ㅁ", "NAME"].includes(part.kind)
                 ? token.ifWord ?? String(token.value) : part.ifWord,
@@ -441,8 +542,42 @@ class MacroProcessor {
             const expanded = token.kind === "NAME" && local.has(token.value)
                 ? this.balanceTokens(this.replacement(token, local.get(token.value), []), local, [token.value])
                 : [token];
+            let consumed = index + 1;
             for (let part = 0; part < expanded.length; part++) {
                 const virtual = expanded[part];
+                if (virtual.kind === "COMBO") {
+                    // A deferred combo in an alias consumes the caller's following payload too.
+                    const length = expanded.length;
+                    const combo = expandCombo([...expanded, ...tokens.slice(consumed)], part);
+                    consumed += Math.max(0, combo.end - length);
+                    spliceTokens(expanded, part, Math.min(combo.end, length) - part, combo.body);
+                    part--;
+                    continue;
+                }
+                if (virtual.kind === "NAME" && local.has(virtual.value)) {
+                    const chain = virtual.macroChain ?? [];
+                    const replacement = this.balanceTokens(this.replacement(virtual, local.get(virtual.value), chain), local, [...chain, virtual.value]);
+                    spliceTokens(expanded, part, 1, replacement);
+                    part--;
+                    continue;
+                }
+                if (virtual.kind === "ㅊ" && expanded[part + 1]?.kind === "NAME") {
+                    const nestedName = expanded[part + 1].value;
+                    if (expanded[part + 2]?.kind === "=") {
+                        const end = this.inlineEnd(expanded, part + 3);
+                        local.set(nestedName, expanded.slice(part + 3, end));
+                        part = end - 1;
+                        previous = "custom_definition";
+                        continue;
+                    }
+                    if (expanded[part + 2]?.kind === "SEP") {
+                        const nested = this.collectBlock(expanded, part, local, nesting + 1);
+                        local.set(nestedName, nested.body);
+                        part = nested.end - 1;
+                        previous = "ㅋ";
+                        continue;
+                    }
+                }
                 if ((this.openers.has(virtual.kind) && !(virtual.kind === "ㅁ" && previous === "ㅇ")) || virtual.kind === "ㅊ")
                     level++;
                 else if (virtual.kind === "ㅋ") {
@@ -451,22 +586,27 @@ class MacroProcessor {
                         // A closing alias may contribute body tokens before the terminator.
                         appendTokens(body, expanded.slice(0, part));
                         const tail = expanded.slice(part + 1);
-                        for (let offset = 0; offset < tail.length; offset += 4096)
-                            tokens.splice(index + 1 + offset, 0, ...tail.slice(offset, offset + 4096));
-                        return { body, end: index + 1 };
+                        spliceTokens(tokens, consumed, 0, tail);
+                        return { body, end: consumed };
                     }
                 }
                 previous = virtual.kind;
             }
-            body.push(token);
+            appendTokens(body, tokens.slice(index, consumed));
+            index = consumed - 1;
         }
         throw new ParseError(`custom ${name} 본문을 닫는 ㅋ가 없습니다`, intro.line, intro.col);
     }
-    expand(tokens, chain = []) {
+    expand(tokens) {
         const result = [];
         for (let index = 0; index < tokens.length; index++) {
             const token = tokens[index];
-            if (token.kind === "ㅊ") {
+            if (token.kind === "COMBO") {
+                const combo = expandCombo(tokens, index);
+                spliceTokens(tokens, index, combo.end - index, combo.body);
+                index--;
+            }
+            else if (token.kind === "ㅊ") {
                 const name = this.nameAt(tokens, index);
                 if (tokens[index + 2]?.kind === "(") {
                     if (this.macros.has(name))
@@ -492,8 +632,9 @@ class MacroProcessor {
                 }
             }
             else if (token.kind === "NAME" && this.macros.has(token.value)) {
-                const body = this.replacement(token, this.macros.get(token.value), chain);
-                appendTokens(result, this.expand(body, [...chain, token.value]));
+                const body = this.replacement(token, this.macros.get(token.value), token.macroChain ?? []);
+                spliceTokens(tokens, index, 1, body);
+                index--;
             }
             else
                 result.push(token);
@@ -513,7 +654,8 @@ class Parser {
     pos = 0;
     nesting = 0;
     constructor(source, options = {}) {
-        this.tokens = new MacroProcessor().run(resolveSpellings(new Lexer(source).run(), options));
+        this.tokens = new MacroProcessor().run(resolveSpellings(new Lexer(source).run(), options))
+            .filter(token => token.kind !== "SOFT_NL");
     }
     get current() { return this.tokens[this.pos]; }
     take() { return this.tokens[this.pos++]; }
@@ -650,7 +792,11 @@ class Parser {
         }
         if (["ㄲ", "ㅛ"].includes(kind)) {
             this.take();
-            return this.node(kind === "ㄲ" ? "goto" : "label", token, { name: this.name() });
+            const wrapped = kind === "ㅛ" && this.accept("(");
+            const name = this.name();
+            if (wrapped)
+                this.expect(")", "라벨 괄호에는 이름 하나만 들어갑니다");
+            return this.node(kind === "ㄲ" ? "goto" : "label", token, { name });
         }
         if (kind === "ㅚ") {
             this.take();
