@@ -4,7 +4,7 @@
 
 ## 목표와 완료 범위
 
-사용자가 명시한 TypeScript 이식, 브라우저와 Node CLI 실행, `ㅊ`의 토큰 매크로 및 class/struct 형태 사용자 자료형, GitHub README용 제안서, GPT-5.3-Codex-Spark 문제 풀이를 수행했다. 기존 Python 산출물은 변경하지 않았다. 공개 GitHub 저장소·원격 주소는 없고 게시하지 않았다.
+사용자가 명시한 TypeScript 이식, 브라우저와 Node CLI 실행, `ㅊ`의 토큰 매크로 및 class/struct 형태 사용자 자료형, GitHub README용 제안서, GPT-5.3-Codex-Spark 문제 풀이를 수행했다. 기존 Python 산출물은 변경하지 않았다. 공개 저장소는 https://github.com/slyni7/JaMo 이며 origin은 https://github.com/slyni7/JaMo.git 이다. 웹 실행기는 https://slyni7.github.io/JaMo/ 에 게시했다.
 
 새 산출물은 이 `hunmin-ts/` 프로젝트다. `src/frontend.ts`가 토큰화·매크로·파싱을, `src/runtime.ts`가 AST 실행과 관리 저장 칸을, `src/node-host.ts`·`src/cli.ts`가 로컬 파일 실행을 담당한다. `src/app.ts`·`src/worker.ts`·`src/protocol.ts`·`src/examples.ts`와 `public/`이 웹 화면을 구성한다. `dist/`와 `site/`는 빌드 결과다. README, PORTING, SPARK-QUIZ와 검증 기록을 함께 제공한다.
 
@@ -39,6 +39,8 @@
 - GPT-5.3-Codex-Spark에 도구 없이 10문제 출제. 8개 완전 일치, 조건 누락 1개 채점 제외, 매크로 단계 문제 1개 오답. 교정 뒤 추가 1개 정답. `SPARK-QUIZ.md`와 `verification/spark-execution-key.json`에 기록.
 
 ## 배포와 후속 작업
+
+2026-09-13 공개 완료: 사용자가 승인한 개인 경로·운영 메모 제거 후 첫 커밋은 `80b8b1b8a8d63df20c57d73236c66455ae05c521`이다. 작성자와 기존 Codex 공동 작성자는 유지했다. `gh-pages`의 `29b9cdf6f2776238424dfeb2c5799ccbcb4bca63`은 그 첫 커밋의 `site/`와 같은 트리를 루트에 게시한 배포 커밋이다. 소스 `main`과 배포 `gh-pages`는 별도이며 자동 동기화 설정은 없다. 공개 HTTP 파일 9/9개 일치 및 내장 브라우저 경로 4/4개는 `verification/pages.json`에 기록했다. 이후 설계·기능 변경은 아디나의 직접 지휘에 따른다.
 
 소스 묶음은 상위 `hunmin-typescript.zip`, 정적 배포본은 상위 `hunmin-pages.zip`으로 만든다. Pages ZIP은 `site/` 내용을 루트에 둔다. 아카이브 CRC와 모든 구성 파일의 SHA-256 대조 결과는 상위 `typescript-bundle-verification.json`에 둔다. 소스 실행은 `pnpm install --frozen-lockfile`, `pnpm build`, `pnpm start`를 사용한다.
 

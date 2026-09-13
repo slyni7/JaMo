@@ -1,0 +1,181 @@
+{
+  "verified_at": "2026-09-13T16:19:08.289169+09:00",
+  "site_url": "https://slyni7.github.io/JaMo/",
+  "method": "Public HTTP GET; SHA-256 and direct byte equality against existing site/ files",
+  "expected_main_commit": "80b8b1b8a8d63df20c57d73236c66455ae05c521",
+  "expected_pages_commit": "29b9cdf6f2776238424dfeb2c5799ccbcb4bca63",
+  "expected_site_tree": "b701d6f6e06c8f06206c8d4bec7097ee2218848a",
+  "total": 9,
+  "passed": 9,
+  "assets": [
+    {
+      "path": "index.html",
+      "url": "https://slyni7.github.io/JaMo/index.html",
+      "local_bytes": 4527,
+      "local_sha256": "15f8e2b95b236ef9bd25a52ce927417ecf8cf7397b4f57bc7889d68b2f50b4f6",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/index.html",
+      "content_type": "text/html; charset=utf-8",
+      "remote_bytes": 4527,
+      "remote_sha256": "15f8e2b95b236ef9bd25a52ce927417ecf8cf7397b4f57bc7889d68b2f50b4f6",
+      "matches": true
+    },
+    {
+      "path": "style.css",
+      "url": "https://slyni7.github.io/JaMo/style.css",
+      "local_bytes": 7600,
+      "local_sha256": "50b59039e37fdf4451b778d79f589bed9bd218620d6847aa88f2295826ff691d",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/style.css",
+      "content_type": "text/css; charset=utf-8",
+      "remote_bytes": 7600,
+      "remote_sha256": "50b59039e37fdf4451b778d79f589bed9bd218620d6847aa88f2295826ff691d",
+      "matches": true
+    },
+    {
+      "path": "dist/app.js",
+      "url": "https://slyni7.github.io/JaMo/dist/app.js",
+      "local_bytes": 13201,
+      "local_sha256": "dc3ea4edaa9e92581ce550b10cff55520f9a2e56881ad803e084008218b8f37e",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/app.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 13201,
+      "remote_sha256": "dc3ea4edaa9e92581ce550b10cff55520f9a2e56881ad803e084008218b8f37e",
+      "matches": true
+    },
+    {
+      "path": "dist/examples.js",
+      "url": "https://slyni7.github.io/JaMo/dist/examples.js",
+      "local_bytes": 2526,
+      "local_sha256": "916761bbda5e3eb589b9ce6dd4706a345b45b25f78042a13d911577ceaa2ad52",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/examples.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 2526,
+      "remote_sha256": "916761bbda5e3eb589b9ce6dd4706a345b45b25f78042a13d911577ceaa2ad52",
+      "matches": true
+    },
+    {
+      "path": "dist/frontend.js",
+      "url": "https://slyni7.github.io/JaMo/dist/frontend.js",
+      "local_bytes": 39058,
+      "local_sha256": "6ca3d74557c54cb4aeb1006aa091ddc0b92ead28984f767ebbfb5490b9e7cdaa",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/frontend.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 39058,
+      "remote_sha256": "6ca3d74557c54cb4aeb1006aa091ddc0b92ead28984f767ebbfb5490b9e7cdaa",
+      "matches": true
+    },
+    {
+      "path": "dist/hangul.js",
+      "url": "https://slyni7.github.io/JaMo/dist/hangul.js",
+      "local_bytes": 1408,
+      "local_sha256": "d33a7577398523845a3044ed32b10d754816bb8291f4446bce4d003af948a48c",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/hangul.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 1408,
+      "remote_sha256": "d33a7577398523845a3044ed32b10d754816bb8291f4446bce4d003af948a48c",
+      "matches": true
+    },
+    {
+      "path": "dist/protocol.js",
+      "url": "https://slyni7.github.io/JaMo/dist/protocol.js",
+      "local_bytes": 47,
+      "local_sha256": "b5ab69287989be4a830cf388cb3030d92eb9659a48f3e37ce718ba7282bd6417",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/protocol.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 47,
+      "remote_sha256": "b5ab69287989be4a830cf388cb3030d92eb9659a48f3e37ce718ba7282bd6417",
+      "matches": true
+    },
+    {
+      "path": "dist/runtime.js",
+      "url": "https://slyni7.github.io/JaMo/dist/runtime.js",
+      "local_bytes": 49462,
+      "local_sha256": "46d1534372c7186010cdefef438333c0f8aef522b4c1ae928bfa83b97f4325ec",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/runtime.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 49462,
+      "remote_sha256": "46d1534372c7186010cdefef438333c0f8aef522b4c1ae928bfa83b97f4325ec",
+      "matches": true
+    },
+    {
+      "path": "dist/worker.js",
+      "url": "https://slyni7.github.io/JaMo/dist/worker.js",
+      "local_bytes": 2650,
+      "local_sha256": "30499c793f7138ef4c3fa1eccd5e94b60cd21e74502a66af141c9cdbe097ead3",
+      "http_status": 200,
+      "final_url": "https://slyni7.github.io/JaMo/dist/worker.js",
+      "content_type": "application/javascript; charset=utf-8",
+      "remote_bytes": 2650,
+      "remote_sha256": "30499c793f7138ef4c3fa1eccd5e94b60cd21e74502a66af141c9cdbe097ead3",
+      "matches": true
+    }
+  ],
+  "remote_heads": {
+    "command_exit_code": 0,
+    "heads": {
+      "refs/heads/gh-pages": "29b9cdf6f2776238424dfeb2c5799ccbcb4bca63",
+      "refs/heads/main": "80b8b1b8a8d63df20c57d73236c66455ae05c521"
+    },
+    "main_matches": true,
+    "pages_matches": true
+  },
+  "browser": {
+    "cases": [
+      {
+        "output": [
+          "전체 합계: 350",
+          "90점 이상: [100, 95]",
+          "100점이 있나요? ㅖ",
+          "참조로 고친 목록: [110, 85, 100, 95]"
+        ],
+        "name": "default_example",
+        "passed": true,
+        "status": "완료"
+      },
+      {
+        "headers": [
+          "몍",
+          "몌ㄱ",
+          "ㅁᅟᅨᆨ"
+        ],
+        "output": [
+          "완성형",
+          "부분 조합",
+          "중성 종성"
+        ],
+        "name": "composed_and_partial_hangul",
+        "passed": true,
+        "status": "완료"
+      },
+      {
+        "source": "ㅂ(_없는이름)",
+        "output": [
+          "/시작.txt:1:3: 선언하지 않은 이름입니다: _없는이름"
+        ],
+        "name": "undeclared_name_error",
+        "passed": true,
+        "status": "오류"
+      },
+      {
+        "output": [
+          "JaMo 공개 실행 완료!"
+        ],
+        "name": "run_after_error",
+        "passed": true,
+        "status": "완료"
+      }
+    ],
+    "method": "UI interaction with source editor and Run button; rendered output and status observation",
+    "passed": 4,
+    "total": 4,
+    "environment": "Codex in-app browser at the public GitHub Pages URL",
+    "verified_at": "2026-09-13T07:20:04Z"
+  }
+}
