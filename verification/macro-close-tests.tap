@@ -1,0 +1,1584 @@
+TAP version 13
+# Subtest: CLI actual txt custom macros and custom classes
+ok 1 - CLI actual txt custom macros and custom classes
+  ---
+  duration_ms: 206.1683
+  type: 'test'
+  ...
+# Subtest: CLI check does not execute side effects
+ok 2 - CLI check does not execute side effects
+  ---
+  duration_ms: 327.4974
+  type: 'test'
+  ...
+# Subtest: CLI fresh default and shared rejection
+ok 3 - CLI fresh default and shared rejection
+  ---
+  duration_ms: 487.4597
+  type: 'test'
+  ...
+# Subtest: CLI CP949 file roundtrip and unrepresentable output rejection
+ok 4 - CLI CP949 file roundtrip and unrepresentable output rejection
+  ---
+  duration_ms: 497.0142
+  type: 'test'
+  ...
+# Subtest: CLI strict stdin rejects malformed UTF8 and can catch EOF
+ok 5 - CLI strict stdin rejects malformed UTF8 and can catch EOF
+  ---
+  duration_ms: 319.6631
+  type: 'test'
+  ...
+# Subtest: CLI debugger input continue and abort
+ok 6 - CLI debugger input continue and abort
+  ---
+  duration_ms: 367.0295
+  type: 'test'
+  ...
+# Subtest: CLI compact jamo IF, word boundary and finite step diagnostic
+ok 7 - CLI compact jamo IF, word boundary and finite step diagnostic
+  ---
+  duration_ms: 488.3616
+  type: 'test'
+  ...
+# Subtest: CLI composed partial and canonical Hangul in UTF8 and CP949
+ok 8 - CLI composed partial and canonical Hangul in UTF8 and CP949
+  ---
+  duration_ms: 385.4227
+  type: 'test'
+  ...
+# Subtest: README executable example 1
+ok 9 - README executable example 1
+  ---
+  duration_ms: 17.24
+  type: 'test'
+  ...
+# Subtest: README executable example 2
+ok 10 - README executable example 2
+  ---
+  duration_ms: 1.274
+  type: 'test'
+  ...
+# Subtest: README executable example 3
+ok 11 - README executable example 3
+  ---
+  duration_ms: 1.9325
+  type: 'test'
+  ...
+# Subtest: README executable example 4
+ok 12 - README executable example 4
+  ---
+  duration_ms: 1.1839
+  type: 'test'
+  ...
+# Subtest: README executable example 5
+ok 13 - README executable example 5
+  ---
+  duration_ms: 6.7881
+  type: 'test'
+  ...
+# Subtest: README executable example 6
+ok 14 - README executable example 6
+  ---
+  duration_ms: 2.5648
+  type: 'test'
+  ...
+# Subtest: README executable example 7
+ok 15 - README executable example 7
+  ---
+  duration_ms: 4.7372
+  type: 'test'
+  ...
+# Subtest: README executable example 8
+ok 16 - README executable example 8
+  ---
+  duration_ms: 2.0431
+  type: 'test'
+  ...
+# Subtest: browser bundled example: 처음 시작
+ok 17 - browser bundled example: 처음 시작
+  ---
+  duration_ms: 2.492
+  type: 'test'
+  ...
+# Subtest: browser bundled example: 반복과 참조
+ok 18 - browser bundled example: 반복과 참조
+  ---
+  duration_ms: 2.0109
+  type: 'test'
+  ...
+# Subtest: browser bundled example: ㅊ · 새 명령
+ok 19 - browser bundled example: ㅊ · 새 명령
+  ---
+  duration_ms: 0.9452
+  type: 'test'
+  ...
+# Subtest: browser bundled example: ㅊ · 새 자료형
+ok 20 - browser bundled example: ㅊ · 새 자료형
+  ---
+  duration_ms: 2.0222
+  type: 'test'
+  ...
+# Subtest: browser bundled example: 입력과 정지
+ok 21 - browser bundled example: 입력과 정지
+  ---
+  duration_ms: 0.8781
+  type: 'test'
+  ...
+# Subtest: browser bundled example: 파일 가져오기
+ok 22 - browser bundled example: 파일 가져오기
+  ---
+  duration_ms: 1.6101
+  type: 'test'
+  ...
+# Subtest: browser bundled example: 몍 · 모아쓰기
+ok 23 - browser bundled example: 몍 · 모아쓰기
+  ---
+  duration_ms: 1.5377
+  type: 'test'
+  ...
+# Subtest: optional UI audio respects mute, pending resumes and browser failures
+    # Subtest: default off creates no AudioContext; all four cues work after enabling
+    ok 1 - default off creates no AudioContext; all four cues work after enabling
+      ---
+      duration_ms: 10.8158
+      type: 'test'
+      ...
+    # Subtest: muting immediately disconnects playing and future scheduled notes
+    ok 2 - muting immediately disconnects playing and future scheduled notes
+      ---
+      duration_ms: 2.4671
+      type: 'test'
+      ...
+    # Subtest: an AudioContext resume resolving after mute cannot play a stale cue
+    ok 3 - an AudioContext resume resolving after mute cannot play a stale cue
+      ---
+      duration_ms: 0.8716
+      type: 'test'
+      ...
+    # Subtest: volume is bounded; zero volume cancels sound without creating another context
+    ok 4 - volume is bounded; zero volume cancels sound without creating another context
+      ---
+      duration_ms: 0.594
+      type: 'test'
+      ...
+    # Subtest: rapid repeated keys are bounded and finished voices are disconnected
+    ok 5 - rapid repeated keys are bounded and finished voices are disconnected
+      ---
+      duration_ms: 1.1552
+      type: 'test'
+      ...
+    # Subtest: unsupported audio, constructor failure and denied resume remain optional
+    ok 6 - unsupported audio, constructor failure and denied resume remain optional
+      ---
+      duration_ms: 1.067
+      type: 'test'
+      ...
+    1..6
+ok 24 - optional UI audio respects mute, pending resumes and browser failures
+  ---
+  duration_ms: 22.9052
+  type: 'test'
+  ...
+# Subtest: empty sources and comment-only programs
+ok 25 - empty sources and comment-only programs
+  ---
+  duration_ms: 8.682
+  type: 'test'
+  ...
+# Subtest: 40 assigned characters include the new custom introducer
+ok 26 - 40 assigned characters include the new custom introducer
+  ---
+  duration_ms: 0.6404
+  type: 'test'
+  ...
+# Subtest: a custom introducer alias consumes caller tokens inside a block macro
+ok 27 - a custom introducer alias consumes caller tokens inside a block macro
+  ---
+  duration_ms: 15.8565
+  type: 'test'
+  ...
+# Subtest: custom aliases preserve nested block and type definitions
+ok 28 - custom aliases preserve nested block and type definitions
+  ---
+  duration_ms: 2.3763
+  type: 'test'
+  ...
+# Subtest: a closing alias is consumed once across nested custom definitions
+ok 29 - a closing alias is consumed once across nested custom definitions
+  ---
+  duration_ms: 14.6537
+  type: 'test'
+  ...
+# Subtest: closing aliases match literal terminators at multiple nesting depths
+ok 30 - closing aliases match literal terminators at multiple nesting depths
+  ---
+  duration_ms: 14.4985
+  type: 'test'
+  ...
+# Subtest: splitting a closing alias preserves statements before, between and after terminators
+ok 31 - splitting a closing alias preserves statements before, between and after terminators
+  ---
+  duration_ms: 7.9643
+  type: 'test'
+  ...
+# Subtest: consumed closing aliases stay fixed while ordinary body aliases remain lexical
+ok 32 - consumed closing aliases stay fixed while ordinary body aliases remain lexical
+  ---
+  duration_ms: 2.0702
+  type: 'test'
+  ...
+# Subtest: closing aliases preserve nested declarations inside a yo payload
+ok 33 - closing aliases preserve nested declarations inside a yo payload
+  ---
+  duration_ms: 7.0727
+  type: 'test'
+  ...
+# Subtest: nested closing aliases still reject missing, extra and cyclic terminators
+ok 34 - nested closing aliases still reject missing, extra and cyclic terminators
+  ---
+  duration_ms: 2.4111
+  type: 'test'
+  ...
+# Subtest: declaration aliases preserve Hangul names at the actual macro invocation
+ok 35 - declaration aliases preserve Hangul names at the actual macro invocation
+  ---
+  duration_ms: 4.6116
+  type: 'test'
+  ...
+# Subtest: later alias redefinition does not erase an earlier expanded declaration
+ok 36 - later alias redefinition does not erase an earlier expanded declaration
+  ---
+  duration_ms: 0.506
+  type: 'test'
+  ...
+# Subtest: an unused late declaration alias does not reserve command spellings
+ok 37 - an unused late declaration alias does not reserve command spellings
+  ---
+  duration_ms: 0.6017
+  type: 'test'
+  ...
+# Subtest: a future declaration alias does not change an earlier empty alias expansion
+ok 38 - a future declaration alias does not change an earlier empty alias expansion
+  ---
+  duration_ms: 1.3179
+  type: 'test'
+  ...
+# Subtest: speculative declaration discovery retains normal macro cycle errors
+ok 39 - speculative declaration discovery retains normal macro cycle errors
+  ---
+  duration_ms: 0.5572
+  type: 'test'
+  ...
+# Subtest: ordinary names preserve syllables and Unicode identity
+ok 40 - ordinary names preserve syllables and Unicode identity
+  ---
+  duration_ms: 0.3467
+  type: 'test'
+  ...
+# Subtest: jamo membership remains separate beside punctuation
+ok 41 - jamo membership remains separate beside punctuation
+  ---
+  duration_ms: 0.4453
+  type: 'test'
+  ...
+# Subtest: string and char content is not tokenized
+ok 42 - string and char content is not tokenized
+  ---
+  duration_ms: 0.7712
+  type: 'test'
+  ...
+# Subtest: block-comment newlines preserve statement boundaries
+ok 43 - block-comment newlines preserve statement boundaries
+  ---
+  duration_ms: 0.4944
+  type: 'test'
+  ...
+# Subtest: comments and newlines inside delimiters
+ok 44 - comments and newlines inside delimiters
+  ---
+  duration_ms: 0.3491
+  type: 'test'
+  ...
+# Subtest: block comments do not nest
+ok 45 - block comments do not nest
+  ---
+  duration_ms: 0.2995
+  type: 'test'
+  ...
+# Subtest: source positions count Unicode codepoints
+ok 46 - source positions count Unicode codepoints
+  ---
+  duration_ms: 0.3567
+  type: 'test'
+  ...
+# Subtest: CRLF and lone CR physical line endings
+ok 47 - CRLF and lone CR physical line endings
+  ---
+  duration_ms: 0.3132
+  type: 'test'
+  ...
+# Subtest: literal values retain bigint, number, boolean, null and text distinctions
+ok 48 - literal values retain bigint, number, boolean, null and text distinctions
+  ---
+  duration_ms: 8.606
+  type: 'test'
+  ...
+# Subtest: escapes and one-codepoint char width
+ok 49 - escapes and one-codepoint char width
+  ---
+  duration_ms: 1.6643
+  type: 'test'
+  ...
+# Subtest: invalid literals produce language errors
+ok 50 - invalid literals produce language errors
+  ---
+  duration_ms: 0.4151
+  type: 'test'
+  ...
+# Subtest: large integer literals preserve every digit
+ok 51 - large integer literals preserve every digit
+  ---
+  duration_ms: 0.9595
+  type: 'test'
+  ...
+# Subtest: floating overflow is a positioned source error
+ok 52 - floating overflow is a positioned source error
+  ---
+  duration_ms: 0.3039
+  type: 'test'
+  ...
+# Subtest: surrogates are rejected while valid scalar boundaries work
+ok 53 - surrogates are rejected while valid scalar boundaries work
+  ---
+  duration_ms: 0.4408
+  type: 'test'
+  ...
+# Subtest: arithmetic precedence and associativity
+ok 54 - arithmetic precedence and associativity
+  ---
+  duration_ms: 6.9523
+  type: 'test'
+  ...
+# Subtest: not, comparisons and boolean precedence
+ok 55 - not, comparisons and boolean precedence
+  ---
+  duration_ms: 0.4179
+  type: 'test'
+  ...
+# Subtest: comparison chains are not silently given different semantics
+ok 56 - comparison chains are not silently given different semantics
+  ---
+  duration_ms: 0.4116
+  type: 'test'
+  ...
+# Subtest: builtin symbols are callable name nodes
+ok 57 - builtin symbols are callable name nodes
+  ---
+  duration_ms: 1.5938
+  type: 'test'
+  ...
+# Subtest: reference prefixes bind around postfix access
+ok 58 - reference prefixes bind around postfix access
+  ---
+  duration_ms: 0.7068
+  type: 'test'
+  ...
+# Subtest: postfix calls, indexing and member chains
+ok 59 - postfix calls, indexing and member chains
+  ---
+  duration_ms: 0.3368
+  type: 'test'
+  ...
+# Subtest: slice optional components preserve null
+ok 60 - slice optional components preserve null
+  ---
+  duration_ms: 0.5557
+  type: 'test'
+  ...
+# Subtest: where with lambda preserves the predicate body
+ok 61 - where with lambda preserves the predicate body
+  ---
+  duration_ms: 0.3281
+  type: 'test'
+  ...
+# Subtest: where accepts an existing function name
+ok 62 - where accepts an existing function name
+  ---
+  duration_ms: 0.1825
+  type: 'test'
+  ...
+# Subtest: declaration and assignment AST shapes
+ok 63 - declaration and assignment AST shapes
+  ---
+  duration_ms: 0.4988
+  type: 'test'
+  ...
+# Subtest: slice assignment explicitly stays unsupported
+ok 64 - slice assignment explicitly stays unsupported
+  ---
+  duration_ms: 0.6981
+  type: 'test'
+  ...
+# Subtest: invalid assignment targets and declarations
+ok 65 - invalid assignment targets and declarations
+  ---
+  duration_ms: 0.7925
+  type: 'test'
+  ...
+# Subtest: if, elseif and else structure
+ok 66 - if, elseif and else structure
+  ---
+  duration_ms: 0.4205
+  type: 'test'
+  ...
+# Subtest: empty blocks and absent else
+ok 67 - empty blocks and absent else
+  ---
+  duration_ms: 0.2158
+  type: 'test'
+  ...
+# Subtest: nested loops and optional then
+ok 68 - nested loops and optional then
+  ---
+  duration_ms: 0.5908
+  type: 'test'
+  ...
+# Subtest: function parameters, return and continue mappings
+ok 69 - function parameters, return and continue mappings
+  ---
+  duration_ms: 0.5588
+  type: 'test'
+  ...
+# Subtest: try, throw and bare rethrow
+ok 70 - try, throw and bare rethrow
+  ---
+  duration_ms: 0.3188
+  type: 'test'
+  ...
+# Subtest: goto, label, import and debug AST
+ok 71 - goto, label, import and debug AST
+  ---
+  duration_ms: 0.3881
+  type: 'test'
+  ...
+# Subtest: semicolon-delimited blocks
+ok 72 - semicolon-delimited blocks
+  ---
+  duration_ms: 3.86
+  type: 'test'
+  ...
+# Subtest: missing and misplaced block syntax
+ok 73 - missing and misplaced block syntax
+  ---
+  duration_ms: 1.0354
+  type: 'test'
+  ...
+# Subtest: custom registration has specific malformed-body errors; unassigned jamo still fail
+ok 74 - custom registration has specific malformed-body errors; unassigned jamo still fail
+  ---
+  duration_ms: 0.5566
+  type: 'test'
+  ...
+# Subtest: custom can register operators and expression fragments
+ok 75 - custom can register operators and expression fragments
+  ---
+  duration_ms: 0.4305
+  type: 'test'
+  ...
+# Subtest: custom block invocation expands complete statement sequences
+ok 76 - custom block invocation expands complete statement sequences
+  ---
+  duration_ms: 0.4167
+  type: 'test'
+  ...
+# Subtest: custom replaces exact NAME tokens without touching text or larger names
+ok 77 - custom replaces exact NAME tokens without touching text or larger names
+  ---
+  duration_ms: 0.327
+  type: 'test'
+  ...
+# Subtest: custom block collection balances every old block and elseif
+ok 78 - custom block collection balances every old block and elseif
+  ---
+  duration_ms: 0.6105
+  type: 'test'
+  ...
+# Subtest: custom may register more custom definitions when invoked
+ok 79 - custom may register more custom definitions when invoked
+  ---
+  duration_ms: 0.5974
+  type: 'test'
+  ...
+# Subtest: custom references other definitions at invocation and allows sequential registration
+ok 80 - custom references other definitions at invocation and allows sequential registration
+  ---
+  duration_ms: 0.4342
+  type: 'test'
+  ...
+# Subtest: custom IF aliases keep actual invocation whitespace requirements
+ok 81 - custom IF aliases keep actual invocation whitespace requirements
+  ---
+  duration_ms: 0.5746
+  type: 'test'
+  ...
+# Subtest: known aliases participate in custom block boundary collection
+ok 82 - known aliases participate in custom block boundary collection
+  ---
+  duration_ms: 0.5334
+  type: 'test'
+  ...
+# Subtest: recursive custom expansion is rejected at invocation
+ok 83 - recursive custom expansion is rejected at invocation
+  ---
+  duration_ms: 14.0722
+  type: 'test'
+  ...
+# Subtest: custom type header generates a distinct constructor definition AST
+ok 84 - custom type header generates a distinct constructor definition AST
+  ---
+  duration_ms: 0.9189
+  type: 'test'
+  ...
+# Subtest: custom types can appear inside custom macro bodies
+ok 85 - custom types can appear inside custom macro bodies
+  ---
+  duration_ms: 0.4404
+  type: 'test'
+  ...
+# Subtest: custom macros and types cannot register the same name in either order
+ok 86 - custom macros and types cannot register the same name in either order
+  ---
+  duration_ms: 1.4573
+  type: 'test'
+  ...
+# Subtest: invalid punctuation and delimiter pairing
+ok 87 - invalid punctuation and delimiter pairing
+  ---
+  duration_ms: 0.863
+  type: 'test'
+  ...
+# Subtest: public error and Node structure
+ok 88 - public error and Node structure
+  ---
+  duration_ms: 0.3961
+  type: 'test'
+  ...
+# Subtest: deep recursive grammar gives positioned implementation limits
+ok 89 - deep recursive grammar gives positioned implementation limits
+  ---
+  duration_ms: 80.7389
+  type: 'test'
+  ...
+# Subtest: deep left-associative and postfix trees are bounded
+ok 90 - deep left-associative and postfix trees are bounded
+  ---
+  duration_ms: 133.3316
+  type: 'test'
+  ...
+# Subtest: depth limits do not cap wide lists or long programs
+ok 91 - depth limits do not cap wide lists or long programs
+  ---
+  duration_ms: 83.1566
+  type: 'test'
+  ...
+# Subtest: a failed deep parse does not poison later parses
+ok 92 - a failed deep parse does not poison later parses
+  ---
+  duration_ms: 1.3533
+  type: 'test'
+  ...
+# Subtest: native jamo IF allows adjacent conditions, including elseif
+ok 93 - native jamo IF allows adjacent conditions, including elseif
+  ---
+  duration_ms: 0.8794
+  type: 'test'
+  ...
+# Subtest: English IF word alias requires whitespace without restricting native jamo
+ok 94 - English IF word alias requires whitespace without restricting native jamo
+  ---
+  duration_ms: 0.9686
+  type: 'test'
+  ...
+# Subtest: proposed IF spellings are ordinary names, not aliases
+ok 95 - proposed IF spellings are ordinary names, not aliases
+  ---
+  duration_ms: 0.3561
+  type: 'test'
+  ...
+# Subtest: arithmetic characters are always operators, never identifier parts
+ok 96 - arithmetic characters are always operators, never identifier parts
+  ---
+  duration_ms: 0.4501
+  type: 'test'
+  ...
+# Subtest: Unicode identifier digits and combining marks match the legacy categories
+ok 97 - Unicode identifier digits and combining marks match the legacy categories
+  ---
+  duration_ms: 0.9393
+  type: 'test'
+  ...
+# Subtest: all 11172 modern syllables agree with independent canonical NFD decomposition
+ok 98 - all 11172 modern syllables agree with independent canonical NFD decomposition
+  ---
+  duration_ms: 32.9567
+  type: 'test'
+  ...
+# Subtest: CP949 UHC extension covers all modern syllables and rejects invalid bytes
+ok 99 - CP949 UHC extension covers all modern syllables and rejects invalid bytes
+  ---
+  duration_ms: 58.3546
+  type: 'test'
+  ...
+# Subtest: all 11 standalone clusters agree with their Unicode final jamo and roundtrip encodings
+ok 100 - all 11 standalone clusters agree with their Unicode final jamo and roundtrip encodings
+  ---
+  duration_ms: 1.7404
+  type: 'test'
+  ...
+# Subtest: received standalone cluster commands execute as their component commands
+ok 101 - received standalone cluster commands execute as their component commands
+  ---
+  duration_ms: 16.5553
+  type: 'test'
+  ...
+# Subtest: all 11 cluster names are preserved when declared and across executions
+ok 102 - all 11 cluster names are preserved when declared and across executions
+  ---
+  duration_ms: 37.153
+  type: 'test'
+  ...
+# Subtest: cluster custom names expand before vanilla command decomposition
+ok 103 - cluster custom names expand before vanilla command decomposition
+  ---
+  duration_ms: 16.8797
+  type: 'test'
+  ...
+# Subtest: registered cluster word mapping wins over the same declared name
+ok 104 - registered cluster word mapping wins over the same declared name
+  ---
+  duration_ms: 1.0577
+  type: 'test'
+  ...
+# Subtest: cluster strings chars and comments retain original codepoints
+ok 105 - cluster strings chars and comments retain original codepoints
+  ---
+  duration_ms: 8.407
+  type: 'test'
+  ...
+# Subtest: cluster spelling preserves source columns and does not invent call syntax
+ok 106 - cluster spelling preserves source columns and does not invent call syntax
+  ---
+  duration_ms: 18.4507
+  type: 'test'
+  ...
+# Subtest: complete, partial, canonical and filler spellings execute the same conditional
+ok 107 - complete, partial, canonical and filler spellings execute the same conditional
+  ---
+  duration_ms: 18.0087
+  type: 'test'
+  ...
+# Subtest: registered word mapping wins over an existing declared spelling and vanilla
+ok 108 - registered word mapping wins over an existing declared spelling and vanilla
+  ---
+  duration_ms: 0.9783
+  type: 'test'
+  ...
+# Subtest: declarations win over vanilla decomposition including later reads and references
+ok 109 - declarations win over vanilla decomposition including later reads and references
+  ---
+  duration_ms: 0.7011
+  type: 'test'
+  ...
+# Subtest: existing environment names remain names across execute calls
+ok 110 - existing environment names remain names across execute calls
+  ---
+  duration_ms: 0.5363
+  type: 'test'
+  ...
+# Subtest: function parameters, loop bindings and lambdas preserve their declared spelling
+ok 111 - function parameters, loop bindings and lambdas preserve their declared spelling
+  ---
+  duration_ms: 1.5826
+  type: 'test'
+  ...
+# Subtest: custom registration and constructor fields are protected names
+ok 112 - custom registration and constructor fields are protected names
+  ---
+  duration_ms: 2.2835
+  type: 'test'
+  ...
+# Subtest: matching custom name is not decomposed before macro expansion
+ok 113 - matching custom name is not decomposed before macro expansion
+  ---
+  duration_ms: 0.4699
+  type: 'test'
+  ...
+# Subtest: declarations introduced through custom keyword aliases protect their names
+ok 114 - declarations introduced through custom keyword aliases protect their names
+  ---
+  duration_ms: 3.6154
+  type: 'test'
+  ...
+# Subtest: strings chars and comments keep original codepoints including canonical jamo
+ok 115 - strings chars and comments keep original codepoints including canonical jamo
+  ---
+  duration_ms: 1.9105
+  type: 'test'
+  ...
+# Subtest: mixed identifier markers prevent vanilla decomposition without removing the marker
+ok 116 - mixed identifier markers prevent vanilla decomposition without removing the marker
+  ---
+  duration_ms: 0.6996
+  type: 'test'
+  ...
+# Subtest: real ieung is retained while the empty initial filler adds no command
+ok 117 - real ieung is retained while the empty initial filler adds no command
+  ---
+  duration_ms: 0.381
+  type: 'test'
+  ...
+# Subtest: locations refer to original glyph columns after decomposition
+ok 118 - locations refer to original glyph columns after decomposition
+  ---
+  duration_ms: 0.7737
+  type: 'test'
+  ...
+# Subtest: word IF whitespace remains distinct from compact native commands
+ok 119 - word IF whitespace remains distinct from compact native commands
+  ---
+  duration_ms: 3.2179
+  type: 'test'
+  ...
+# Subtest: declaration spelling collection does not execute skipped declarations or change scope
+ok 120 - declaration spelling collection does not execute skipped declarations or change scope
+  ---
+  duration_ms: 2.1228
+  type: 'test'
+  ...
+# Subtest: module aliases and members preserve declared names
+ok 121 - module aliases and members preserve declared names
+  ---
+  duration_ms: 3.1056
+  type: 'test'
+  ...
+# Subtest: 300ms default joins all 11 supported pairs and leaves the first character visible
+ok 122 - 300ms default joins all 11 supported pairs and leaves the first character visible
+  ---
+  duration_ms: 3.9697
+  type: 'test'
+  ...
+# Subtest: timing boundary is inclusive and out-of-window or backward clocks never join
+ok 123 - timing boundary is inclusive and out-of-window or backward clocks never join
+  ---
+  duration_ms: 0.4888
+  type: 'test'
+  ...
+# Subtest: disabled assistance and invalid timing cannot combine
+ok 124 - disabled assistance and invalid timing cannot combine
+  ---
+  duration_ms: 0.3124
+  type: 'test'
+  ...
+# Subtest: only adjacent insertion into the same unchanged document can join
+ok 125 - only adjacent insertion into the same unchanged document can join
+  ---
+  duration_ms: 0.298
+  type: 'test'
+  ...
+# Subtest: paste, bulk insertion and pre-existing text do not seed a later combination
+ok 126 - paste, bulk insertion and pre-existing text do not seed a later combination
+  ---
+  duration_ms: 7.2465
+  type: 'test'
+  ...
+# Subtest: local range replacement preserves prefix, suffix, emoji and unrelated spelling
+ok 127 - local range replacement preserves prefix, suffix, emoji and unrelated spelling
+  ---
+  duration_ms: 0.3994
+  type: 'test'
+  ...
+# Subtest: controller joins native typing and palette input through the same editing run
+ok 128 - controller joins native typing and palette input through the same editing run
+  ---
+  duration_ms: 3.6868
+  type: 'test'
+  ...
+# Subtest: controller respects configurable delay and off switch without delaying display
+ok 129 - controller respects configurable delay and off switch without delaying display
+  ---
+  duration_ms: 0.6147
+  type: 'test'
+  ...
+# Subtest: cursor navigation, blur, paste, cut, drop, deletion and settings cancel the pending character
+ok 130 - cursor navigation, blur, paste, cut, drop, deletion and settings cancel the pending character
+  ---
+  duration_ms: 1.8306
+  type: 'test'
+  ...
+# Subtest: selection replacement and unchanged select notifications behave differently
+ok 131 - selection replacement and unchanged select notifications behave differently
+  ---
+  duration_ms: 0.8815
+  type: 'test'
+  ...
+# Subtest: single-character paste, bulk palette text and programmatic input never combine
+ok 132 - single-character paste, bulk palette text and programmatic input never combine
+  ---
+  duration_ms: 0.5583
+  type: 'test'
+  ...
+# Subtest: IME text remains untouched during composition and combines once after it commits
+ok 133 - IME text remains untouched during composition and combines once after it commits
+  ---
+  duration_ms: 0.5665
+  type: 'test'
+  ...
+# Subtest: successive IME-completed standalone consonants use their commit times
+ok 134 - successive IME-completed standalone consonants use their commit times
+  ---
+  duration_ms: 0.314
+  type: 'test'
+  ...
+# Subtest: IME can insert final text after compositionend without duplicate handling
+ok 135 - IME can insert final text after compositionend without duplicate handling
+  ---
+  duration_ms: 0.2949
+  type: 'test'
+  ...
+# Subtest: cancelled IME and paste after an empty composition do not combine
+ok 136 - cancelled IME and paste after an empty composition do not combine
+  ---
+  duration_ms: 0.2968
+  type: 'test'
+  ...
+# Subtest: multi-character IME commits and normal syllables are preserved verbatim
+ok 137 - multi-character IME commits and normal syllables are preserved verbatim
+  ---
+  duration_ms: 0.2855
+  type: 'test'
+  ...
+# Subtest: palette changes notify existing input listeners once and disposal removes assistance
+ok 138 - palette changes notify existing input listeners once and disposal removes assistance
+  ---
+  duration_ms: 0.6424
+  type: 'test'
+  ...
+# Subtest: synchronous select from setRangeText does not interrupt a palette combination
+ok 139 - synchronous select from setRangeText does not interrupt a palette combination
+  ---
+  duration_ms: 0.4414
+  type: 'test'
+  ...
+# Subtest: native command edits keep the existing input and palette runs without duplicate notifications
+ok 140 - native command edits keep the existing input and palette runs without duplicate notifications
+  ---
+  duration_ms: 2.419
+  type: 'test'
+  ...
+# Subtest: native palette selection replacement preserves surrounding text and completes one change
+ok 141 - native palette selection replacement preserves surrounding text and completes one change
+  ---
+  duration_ms: 1.7909
+  type: 'test'
+  ...
+# Subtest: native edit detection avoids double insertion and retains unsupported-command fallback
+ok 142 - native edit detection avoids double insertion and retains unsupported-command fallback
+  ---
+  duration_ms: 1.4465
+  type: 'test'
+  ...
+# Subtest: native editing waits for IME commit and never recombines a history restoration
+ok 143 - native editing waits for IME commit and never recombines a history restoration
+  ---
+  duration_ms: 0.4235
+  type: 'test'
+  ...
+# Subtest: arithmetic, boolean type distinction and short circuit
+ok 144 - arithmetic, boolean type distinction and short circuit
+  ---
+  duration_ms: 22.2066
+  type: 'test'
+  ...
+# Subtest: declaration, outer binding and missing names
+ok 145 - declaration, outer binding and missing names
+  ---
+  duration_ms: 6.6785
+  type: 'test'
+  ...
+# Subtest: if, elseif and final else each execute the selected branch
+ok 146 - if, elseif and final else each execute the selected branch
+  ---
+  duration_ms: 2.9767
+  type: 'test'
+  ...
+# Subtest: recursive function and return mapping
+ok 147 - recursive function and return mapping
+  ---
+  duration_ms: 1.955
+  type: 'test'
+  ...
+# Subtest: for and while preserve continue and break
+ok 148 - for and while preserve continue and break
+  ---
+  duration_ms: 2.4358
+  type: 'test'
+  ...
+# Subtest: fresh loop cells are independent and survive through references
+ok 149 - fresh loop cells are independent and survive through references
+  ---
+  duration_ms: 1.635
+  type: 'test'
+  ...
+# Subtest: each iteration starts without the previous declaration
+ok 150 - each iteration starts without the previous declaration
+  ---
+  duration_ms: 4.3098
+  type: 'test'
+  ...
+# Subtest: while references remain valid after continue and break
+ok 151 - while references remain valid after continue and break
+  ---
+  duration_ms: 3.6224
+  type: 'test'
+  ...
+# Subtest: nested loop bindings do not overwrite their outer scope
+ok 152 - nested loop bindings do not overwrite their outer scope
+  ---
+  duration_ms: 3.8516
+  type: 'test'
+  ...
+# Subtest: function calls and duplicate declarations inside a loop
+ok 153 - function calls and duplicate declarations inside a loop
+  ---
+  duration_ms: 4.8966
+  type: 'test'
+  ...
+# Subtest: fresh loop closures remember each iteration
+ok 154 - fresh loop closures remember each iteration
+  ---
+  duration_ms: 1.2423
+  type: 'test'
+  ...
+# Subtest: goto forward and forbidden control contexts
+ok 155 - goto forward and forbidden control contexts
+  ---
+  duration_ms: 4.4579
+  type: 'test'
+  ...
+# Subtest: goto exits nested loops and restores loop context
+ok 156 - goto exits nested loops and restores loop context
+  ---
+  duration_ms: 1.002
+  type: 'test'
+  ...
+# Subtest: goto backward, sibling scope and function boundaries
+ok 157 - goto backward, sibling scope and function boundaries
+  ---
+  duration_ms: 1.7514
+  type: 'test'
+  ...
+# Subtest: nearest goto label and exception stack unwinding
+ok 158 - nearest goto label and exception stack unwinding
+  ---
+  duration_ms: 1.3223
+  type: 'test'
+  ...
+# Subtest: throw, rethrow, nil payload and pass are distinct
+ok 159 - throw, rethrow, nil payload and pass are distinct
+  ---
+  duration_ms: 1.7169
+  type: 'test'
+  ...
+# Subtest: handlers cannot swallow return, continue or break
+ok 160 - handlers cannot swallow return, continue or break
+  ---
+  duration_ms: 1.395
+  type: 'test'
+  ...
+# Subtest: primitive conversion, character and string types
+ok 161 - primitive conversion, character and string types
+  ---
+  duration_ms: 2.8682
+  type: 'test'
+  ...
+# Subtest: string indexing, iteration and conversion use codepoints
+ok 162 - string indexing, iteration and conversion use codepoints
+  ---
+  duration_ms: 1.1303
+  type: 'test'
+  ...
+# Subtest: membership, filtering and Python slices
+ok 163 - membership, filtering and Python slices
+  ---
+  duration_ms: 4.9396
+  type: 'test'
+  ...
+# Subtest: where named predicates run once in original order
+ok 164 - where named predicates run once in original order
+  ---
+  duration_ms: 0.912
+  type: 'test'
+  ...
+# Subtest: for and where snapshot their original input values
+ok 165 - for and where snapshot their original input values
+  ---
+  duration_ms: 1.1022
+  type: 'test'
+  ...
+# Subtest: empty filter validates predicate and builtin arity
+ok 166 - empty filter validates predicate and builtin arity
+  ---
+  duration_ms: 1.3586
+  type: 'test'
+  ...
+# Subtest: five thousand digit integer literal and conversion
+ok 167 - five thousand digit integer literal and conversion
+  ---
+  duration_ms: 4.5485
+  type: 'test'
+  ...
+# Subtest: Unicode decimal integer conversion is independent of length
+ok 168 - Unicode decimal integer conversion is independent of length
+  ---
+  duration_ms: 13.9844
+  type: 'test'
+  ...
+# Subtest: bigint division rounds finite huge ratios without operand overflow
+ok 169 - bigint division rounds finite huge ratios without operand overflow
+  ---
+  duration_ms: 1.795
+  type: 'test'
+  ...
+# Subtest: float floor/modulo and display preserve Python behavior
+ok 170 - float floor/modulo and display preserve Python behavior
+  ---
+  duration_ms: 2.1344
+  type: 'test'
+  ...
+# Subtest: mixed bigint/float comparisons do not lose integer precision
+ok 171 - mixed bigint/float comparisons do not lose integer precision
+  ---
+  duration_ms: 0.7005
+  type: 'test'
+  ...
+# Subtest: legacy nonfinite conversion and zero slice-step diagnostics are preserved
+ok 172 - legacy nonfinite conversion and zero slice-step diagnostics are preserved
+  ---
+  duration_ms: 0.7824
+  type: 'test'
+  ...
+# Subtest: general references alias source and value boxes retain lifetime
+ok 173 - general references alias source and value boxes retain lifetime
+  ---
+  duration_ms: 0.7224
+  type: 'test'
+  ...
+# Subtest: returned local reference remains writable
+ok 174 - returned local reference remains writable
+  ---
+  duration_ms: 2.3337
+  type: 'test'
+  ...
+# Subtest: readonly reference expression evaluates its index once
+ok 175 - readonly reference expression evaluates its index once
+  ---
+  duration_ms: 1.2798
+  type: 'test'
+  ...
+# Subtest: strict references and their rejection cases
+ok 176 - strict references and their rejection cases
+  ---
+  duration_ms: 2.5754
+  type: 'test'
+  ...
+# Subtest: index evaluated once, cell follows insertion and detects deletion
+ok 177 - index evaluated once, cell follows insertion and detects deletion
+  ---
+  duration_ms: 1.1531
+  type: 'test'
+  ...
+# Subtest: list sharing, shallow copy and cyclic values
+ok 178 - list sharing, shallow copy and cyclic values
+  ---
+  duration_ms: 1.1209
+  type: 'test'
+  ...
+# Subtest: debugger events, async resumption and missing debugger
+ok 179 - debugger events, async resumption and missing debugger
+  ---
+  duration_ms: 0.7484
+  type: 'test'
+  ...
+# Subtest: debugger user abort is not swallowed by a language handler
+ok 180 - debugger user abort is not swallowed by a language handler
+  ---
+  duration_ms: 0.5142
+  type: 'test'
+  ...
+# Subtest: async input yields and resumes with the same prompt
+ok 181 - async input yields and resumes with the same prompt
+  ---
+  duration_ms: 0.4683
+  type: 'test'
+  ...
+# Subtest: input EOF becomes a catchable language error
+ok 182 - input EOF becomes a catchable language error
+  ---
+  duration_ms: 0.7516
+  type: 'test'
+  ...
+# Subtest: step limit and runtime locations remain observable
+ok 183 - step limit and runtime locations remain observable
+  ---
+  duration_ms: 1.1608
+  type: 'test'
+  ...
+# Subtest: virtual paths preserve source-relative modules and Windows roots
+ok 184 - virtual paths preserve source-relative modules and Windows roots
+  ---
+  duration_ms: 0.5023
+  type: 'test'
+  ...
+# Subtest: module cache, source-relative I/O and cycle detection
+ok 185 - module cache, source-relative I/O and cycle detection
+  ---
+  duration_ms: 2.7602
+  type: 'test'
+  ...
+# Subtest: imported syntax and control errors retain the imported path
+ok 186 - imported syntax and control errors retain the imported path
+  ---
+  duration_ms: 4.7568
+  type: 'test'
+  ...
+# Subtest: failed import is catchable and can be rewritten then retried
+ok 187 - failed import is catchable and can be rewritten then retried
+  ---
+  duration_ms: 1.1825
+  type: 'test'
+  ...
+# Subtest: invalid default import name is diagnosed before initialization
+ok 188 - invalid default import name is diagnosed before initialization
+  ---
+  duration_ms: 1.152
+  type: 'test'
+  ...
+# Subtest: module initialization does not inherit its callers loop scope
+ok 189 - module initialization does not inherit its callers loop scope
+  ---
+  duration_ms: 0.8119
+  type: 'test'
+  ...
+# Subtest: async host reads and writes preserve serialized execution order
+ok 190 - async host reads and writes preserve serialized execution order
+  ---
+  duration_ms: 0.8238
+  type: 'test'
+  ...
+# Subtest: custom type records, methods and distinct type names
+ok 191 - custom type records, methods and distinct type names
+  ---
+  duration_ms: 1.3833
+  type: 'test'
+  ...
+# Subtest: custom instances have independent fields, lists and method closures
+ok 192 - custom instances have independent fields, lists and method closures
+  ---
+  duration_ms: 2.2705
+  type: 'test'
+  ...
+# Subtest: custom member assignment and normal/strict references share the field
+ok 193 - custom member assignment and normal/strict references share the field
+  ---
+  duration_ms: 9.449
+  type: 'test'
+  ...
+# Subtest: constructor parameters remain private to the construction scope
+ok 194 - constructor parameters remain private to the construction scope
+  ---
+  duration_ms: 1.1152
+  type: 'test'
+  ...
+# Subtest: constructors permit empty early return but cannot replace identity
+ok 195 - constructors permit empty early return but cannot replace identity
+  ---
+  duration_ms: 1.2751
+  type: 'test'
+  ...
+# Subtest: methods extracted from an instance retain the instance field scope
+ok 196 - methods extracted from an instance retain the instance field scope
+  ---
+  duration_ms: 0.6845
+  type: 'test'
+  ...
+# Subtest: default settings contain exactly 40 commands and 11 clusters without changing spellings
+ok 197 - default settings contain exactly 40 commands and 11 clusters without changing spellings
+  ---
+  duration_ms: 16.8861
+  type: 'test'
+  ...
+# Subtest: settings copies and validation results do not share editable arrays or nested records
+ok 198 - settings copies and validation results do not share editable arrays or nested records
+  ---
+  duration_ms: 1.0358
+  type: 'test'
+  ...
+# Subtest: settings validate supported versions, timing, skin, sound and disabled slots
+ok 199 - settings validate supported versions, timing, skin, sound and disabled slots
+  ---
+  duration_ms: 1.9728
+  type: 'test'
+  ...
+# Subtest: alias validation rejects invalid names, duplicate ownership and incomplete slot tables
+ok 200 - alias validation rejects invalid names, duplicate ownership and incomplete slot tables
+  ---
+  duration_ms: 7.1972
+  type: 'test'
+  ...
+# Subtest: word alias editing maps names to fixed slots including disabled and cluster slots
+ok 201 - word alias editing maps names to fixed slots including disabled and cluster slots
+  ---
+  duration_ms: 0.5477
+  type: 'test'
+  ...
+# Subtest: disabled print rejects raw, conjoining, filler and composed command spelling
+ok 202 - disabled print rejects raw, conjoining, filler and composed command spelling
+  ---
+  duration_ms: 4.2977
+  type: 'test'
+  ...
+# Subtest: disabled print cannot be reached through word aliases or custom macros
+ok 203 - disabled print cannot be reached through word aliases or custom macros
+  ---
+  duration_ms: 2.4882
+  type: 'test'
+  ...
+# Subtest: imports retain the same disabled-symbol and alias policy
+ok 204 - imports retain the same disabled-symbol and alias policy
+  ---
+  duration_ms: 8.287
+  type: 'test'
+  ...
+# Subtest: disabled label also disables every supported spelling of the yo payload combination
+ok 205 - disabled label also disables every supported spelling of the yo payload combination
+  ---
+  duration_ms: 3.1015
+  type: 'test'
+  ...
+# Subtest: disabled cluster identity survives raw spelling, Unicode final jamo and full syllables
+ok 206 - disabled cluster identity survives raw spelling, Unicode final jamo and full syllables
+  ---
+  duration_ms: 2.1219
+  type: 'test'
+  ...
+# Subtest: all 11 disabled cluster slots retain their identity through Unicode final spelling
+ok 207 - all 11 disabled cluster slots retain their identity through Unicode final spelling
+  ---
+  duration_ms: 3.5701
+  type: 'test'
+  ...
+# Subtest: disabled cluster rejects aliases targeting that slot without changing its builtin expansion
+ok 208 - disabled cluster rejects aliases targeting that slot without changing its builtin expansion
+  ---
+  duration_ms: 0.9992
+  type: 'test'
+  ...
+# Subtest: disabling a cluster slot does not disable its two independently enabled consonants
+ok 209 - disabling a cluster slot does not disable its two independently enabled consonants
+  ---
+  duration_ms: 2.5529
+  type: 'test'
+  ...
+# Subtest: an enabled cluster cannot bypass a disabled component command
+ok 210 - an enabled cluster cannot bypass a disabled component command
+  ---
+  duration_ms: 2.3698
+  type: 'test'
+  ...
+# Subtest: strings, characters and comments preserve disabled spellings without executing them
+ok 211 - strings, characters and comments preserve disabled spellings without executing them
+  ---
+  duration_ms: 1.015
+  type: 'test'
+  ...
+# Subtest: declared syllable, cluster and combo names remain names when their command slots are disabled
+ok 212 - declared syllable, cluster and combo names remain names when their command slots are disabled
+  ---
+  duration_ms: 2.5055
+  type: 'test'
+  ...
+# Subtest: word aliases retain priority over previously declared names and cannot bypass disabled slots
+ok 213 - word aliases retain priority over previously declared names and cannot bypass disabled slots
+  ---
+  duration_ms: 1.0516
+  type: 'test'
+  ...
+# Subtest: disabled symbol errors identify original source positions and reject unknown option slots
+ok 214 - disabled symbol errors identify original source positions and reject unknown option slots
+  ---
+  duration_ms: 0.4939
+  type: 'test'
+  ...
+# Subtest: worker entry self-import matches CLI initialization and cycle detection
+ok 215 - worker entry self-import matches CLI initialization and cycle detection
+  ---
+  duration_ms: 20.681
+  type: 'test'
+  ...
+# Subtest: worker detects an indirect cycle before reexecuting the entry
+ok 216 - worker detects an indirect cycle before reexecuting the entry
+  ---
+  duration_ms: 3.5579
+  type: 'test'
+  ...
+# Subtest: worker runs the current editor buffer and caches ordinary imports
+ok 217 - worker runs the current editor buffer and caches ordinary imports
+  ---
+  duration_ms: 2.6759
+  type: 'test'
+  ...
+# Subtest: worker normalizes entry and workspace paths before file execution
+ok 218 - worker normalizes entry and workspace paths before file execution
+  ---
+  duration_ms: 2.7915
+  type: 'test'
+  ...
+# Subtest: worker accepts a new run after a cycle error
+ok 219 - worker accepts a new run after a cycle error
+  ---
+  duration_ms: 1.0708
+  type: 'test'
+  ...
+# Subtest: yo combinations preserve the forty commands and the ordinary if AST
+ok 220 - yo combinations preserve the forty commands and the ordinary if AST
+  ---
+  duration_ms: 16.3647
+  type: 'test'
+  ...
+# Subtest: yo expansion preserves arbitrary consonant roles outside block headers
+ok 221 - yo expansion preserves arbitrary consonant roles outside block headers
+  ---
+  duration_ms: 9.6132
+  type: 'test'
+  ...
+# Subtest: all 513 final-bearing yo syllables match ordinary commands in three parsing contexts
+ok 222 - all 513 final-bearing yo syllables match ordinary commands in three parsing contexts
+  ---
+  duration_ms: 551.378
+  type: 'test'
+  ...
+# 1539 reference parses: 4 valid, 1535 syntax errors; 3078 composed/NFD comparisons
+# Subtest: excessive combo nesting raises a language error and leaves subsequent parsing usable
+ok 223 - excessive combo nesting raises a language error and leaves subsequent parsing usable
+  ---
+  duration_ms: 20.3207
+  type: 'test'
+  ...
+# Subtest: composed, partial, raw and canonical NFD yo headers execute alike
+ok 224 - composed, partial, raw and canonical NFD yo headers execute alike
+  ---
+  duration_ms: 4.6977
+  type: 'test'
+  ...
+# Subtest: unparenthesized payload ends at newline or semicolon
+ok 225 - unparenthesized payload ends at newline or semicolon
+  ---
+  duration_ms: 5.2889
+  type: 'test'
+  ...
+# Subtest: if, elseif and else retain branch selection with yo headers
+ok 226 - if, elseif and else retain branch selection with yo headers
+  ---
+  duration_ms: 3.7222
+  type: 'test'
+  ...
+# Subtest: while yo header preserves condition reevaluation, continue and break
+ok 227 - while yo header preserves condition reevaluation, continue and break
+  ---
+  duration_ms: 2.8946
+  type: 'test'
+  ...
+# Subtest: for yo header introduces its Hangul binding and retains the ordinary AST
+ok 228 - for yo header introduces its Hangul binding and retains the ordinary AST
+  ---
+  duration_ms: 2.6021
+  type: 'test'
+  ...
+# Subtest: nested compressed loops and conditions keep each block boundary
+ok 229 - nested compressed loops and conditions keep each block boundary
+  ---
+  duration_ms: 1.4216
+  type: 'test'
+  ...
+# Subtest: parenthesized payload respects nested calls, indexing and multiline brackets
+ok 230 - parenthesized payload respects nested calls, indexing and multiline brackets
+  ---
+  duration_ms: 3.4835
+  type: 'test'
+  ...
+# Subtest: unparenthesized payload ignores newlines inside balanced brackets
+ok 231 - unparenthesized payload ignores newlines inside balanced brackets
+  ---
+  duration_ms: 0.9519
+  type: 'test'
+  ...
+# Subtest: yo payload keeps arithmetic grouping and boolean short circuit semantics
+ok 232 - yo payload keeps arithmetic grouping and boolean short circuit semantics
+  ---
+  duration_ms: 1.6963
+  type: 'test'
+  ...
+# Subtest: comments cannot end or fabricate a yo payload
+ok 233 - comments cannot end or fabricate a yo payload
+  ---
+  duration_ms: 0.6627
+  type: 'test'
+  ...
+# Subtest: strings and char literals preserve yo spellings verbatim
+ok 234 - strings and char literals preserve yo spellings verbatim
+  ---
+  duration_ms: 0.6026
+  type: 'test'
+  ...
+# Subtest: declared yo names and mixed identifiers take priority over command expansion
+ok 235 - declared yo names and mixed identifiers take priority over command expansion
+  ---
+  duration_ms: 0.6933
+  type: 'test'
+  ...
+# Subtest: function names and parameters retain declared yo spellings
+ok 236 - function names and parameters retain declared yo spellings
+  ---
+  duration_ms: 1.1018
+  type: 'test'
+  ...
+# Subtest: a whole function combo retains its name, parameter and body statement boundaries
+ok 237 - a whole function combo retains its name, parameter and body statement boundaries
+  ---
+  duration_ms: 1.1014
+  type: 'test'
+  ...
+# Subtest: a matching custom name expands before vanilla yo interpretation
+ok 238 - a matching custom name expands before vanilla yo interpretation
+  ---
+  duration_ms: 0.9962
+  type: 'test'
+  ...
+# Subtest: declared combo names do not invent parameter or loop bindings in their call arguments
+ok 239 - declared combo names do not invent parameter or loop bindings in their call arguments
+  ---
+  duration_ms: 1.5977
+  type: 'test'
+  ...
+# Subtest: word mapping wins over an existing declared yo name
+ok 240 - word mapping wins over an existing declared yo name
+  ---
+  duration_ms: 0.8137
+  type: 'test'
+  ...
+# Subtest: a word mapping can introduce a yo command combination
+ok 241 - a word mapping can introduce a yo command combination
+  ---
+  duration_ms: 0.5837
+  type: 'test'
+  ...
+# Subtest: custom token aliases can introduce a yo command combination
+ok 242 - custom token aliases can introduce a yo command combination
+  ---
+  duration_ms: 0.5915
+  type: 'test'
+  ...
+# Subtest: custom block collection balances a compressed conditional in its body
+ok 243 - custom block collection balances a compressed conditional in its body
+  ---
+  duration_ms: 1.6185
+  type: 'test'
+  ...
+# Subtest: a custom block balances a yo alias declared and invoked inside that block
+ok 244 - a custom block balances a yo alias declared and invoked inside that block
+  ---
+  duration_ms: 2.7901
+  type: 'test'
+  ...
+# Subtest: nested independent uses of a combo alias are not mistaken for recursive expansion
+ok 245 - nested independent uses of a combo alias are not mistaken for recursive expansion
+  ---
+  duration_ms: 2.8365
+  type: 'test'
+  ...
+# Subtest: an alias registered by a macro resolves later redefinition without retaining its creation chain
+ok 246 - an alias registered by a macro resolves later redefinition without retaining its creation chain
+  ---
+  duration_ms: 0.6534
+  type: 'test'
+  ...
+# Subtest: inline custom registration inside a function combo does not add a block opener
+ok 247 - inline custom registration inside a function combo does not add a block opener
+  ---
+  duration_ms: 1.0014
+  type: 'test'
+  ...
+# Subtest: inline custom registration stays balanced inside an aliased function combo
+ok 248 - inline custom registration stays balanced inside an aliased function combo
+  ---
+  duration_ms: 0.7242
+  type: 'test'
+  ...
+# Subtest: an if alias inside a function combo participates in surrounding custom block balance
+ok 249 - an if alias inside a function combo participates in surrounding custom block balance
+  ---
+  duration_ms: 0.6306
+  type: 'test'
+  ...
+# Subtest: an end alias inside a function combo participates in surrounding custom block balance
+ok 250 - an end alias inside a function combo participates in surrounding custom block balance
+  ---
+  duration_ms: 0.715
+  type: 'test'
+  ...
+# Subtest: bare yo label accepts existing and parenthesized names with real goto execution
+ok 251 - bare yo label accepts existing and parenthesized names with real goto execution
+  ---
+  duration_ms: 2.119
+  type: 'test'
+  ...
+# Subtest: parenthesized labels protect decomposable names and require one name
+ok 252 - parenthesized labels protect decomposable names and require one name
+  ---
+  duration_ms: 1.3521
+  type: 'test'
+  ...
+# Subtest: a syllable without a final retains its initial instead of becoming a bare label
+ok 253 - a syllable without a final retains its initial instead of becoming a bare label
+  ---
+  duration_ms: 0.7065
+  type: 'test'
+  ...
+# Subtest: spaced consonants are not silently joined into a yo command header
+ok 254 - spaced consonants are not silently joined into a yo command header
+  ---
+  duration_ms: 0.6491
+  type: 'test'
+  ...
+# Subtest: empty, malformed and invalid-command combinations remain syntax errors
+ok 255 - empty, malformed and invalid-command combinations remain syntax errors
+  ---
+  duration_ms: 1.0895
+  type: 'test'
+  ...
+# Subtest: combo syntax and runtime failures point into the original source
+ok 256 - combo syntax and runtime failures point into the original source
+  ---
+  duration_ms: 4.2692
+  type: 'test'
+  ...
+1..256
+# tests 262
+# suites 0
+# pass 262
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3262.4579

@@ -47,6 +47,70 @@ test("custom aliases preserve nested block and type definitions", async () => {
   assert.deepEqual(await runtimeOutput(type), ["4"]);
 });
 
+test("a closing alias is consumed once across nested custom definitions", async () => {
+  const source = "ㅊ정의=ㅊ\nㅊ두끝=ㅋ ㅋ\nㅊ공장\n정의 인사\nㅂ(3)\n두끝\n공장\n인사";
+  assert.deepEqual(await runtimeOutput(source), ["3"]);
+  assert.deepEqual(await runtimeOutput(source + "\n공장\n인사".repeat(99)), Array(100).fill("3"));
+});
+
+test("closing aliases match literal terminators at multiple nesting depths", async () => {
+  for (const introducer of ["ㅊ", "정의"]) {
+    for (const depth of [1, 2, 3, 4]) {
+      const names = Array.from({ length: depth }, (_, index) => `내부${index}`);
+      const closing = Array(depth + 1).fill("ㅋ").join(" ");
+      const prefix = `ㅊ정의=ㅊ\nㅊ닫기=${closing}\nㅊ공장\n`
+        + names.map(name => `${introducer} ${name}\n`).join("") + "ㅂ(3)\n";
+      const suffix = `\n공장\n${names.join("\n")}`;
+      assert.deepEqual(await runtimeOutput(prefix + closing + suffix), ["3"]);
+      assert.deepEqual(await runtimeOutput(prefix + "닫기" + suffix), ["3"], `${introducer}, depth ${depth}`);
+    }
+  }
+});
+
+test("splitting a closing alias preserves statements before, between and after terminators", async () => {
+  const cases = [
+    ["ㅂ(2) ㅋ ㅋ", ["3", "2"]],
+    ["ㅋ ㅋ ㅂ(9)", ["9", "3"]],
+    ["ㅂ(2) ㅋ ㅂ(4) ㅋ ㅂ(9)", ["9", "4", "3", "2"]],
+  ];
+  for (const introducer of ["ㅊ", "정의"]) {
+    for (const [closing, expected] of cases) {
+      const prefix = `ㅊ정의=ㅊ\nㅊ닫기=${closing}\nㅊ공장\n${introducer} 인사\nㅂ(3)\n`;
+      const suffix = "\n공장\n인사";
+      assert.deepEqual(await runtimeOutput(prefix + closing + suffix), expected);
+      assert.deepEqual(await runtimeOutput(prefix + "닫기" + suffix), expected, `${introducer}: ${closing}`);
+    }
+  }
+});
+
+test("consumed closing aliases stay fixed while ordinary body aliases remain lexical", async () => {
+  for (const introducer of ["ㅊ", "정의"]) {
+    const source = `ㅊ정의=ㅊ\nㅊ값=1\nㅊ마침=ㅋ ㅋ\nㅊ닫기=마침\nㅊ공장\n${introducer} 인사\nㅂ(값)\n닫기\nㅊ마침=ㅂ(9)\nㅊ값=7\n공장\n인사`;
+    assert.deepEqual(await runtimeOutput(source), ["7"], introducer);
+    if (introducer === "정의") {
+      const redefined = source.replace("\n공장\n", "\nㅊ정의=ㅂ(9)ㅊ\n공장\n");
+      assert.deepEqual(await runtimeOutput(redefined), ["9", "7"], "introducer aliases also stay lexical");
+    }
+  }
+});
+
+test("closing aliases preserve nested declarations inside a yo payload", async () => {
+  const source = closing => "ㅊC=ㅊㅛㅋ\nㅊ닫기=ㅂ(2)ㅋㅂ(3)\nㅊ공장\nC(안쪽\nㅊ인사\nㅂ(1)\n"
+    + closing + "\n)\nㅋ\n공장\n안쪽\n인사";
+  assert.deepEqual(await runtimeOutput(source("ㅂ(2)ㅋㅂ(3)")), ["3", "1", "2"]);
+  assert.deepEqual(await runtimeOutput(source("닫기")), ["3", "1", "2"]);
+  const doubleClose = "ㅊC=ㅊㅛㅋ\nㅊ닫기=ㅋㅋ\nㅊ공장\nC(안쪽\nㅊ더안\nㅊ인사\nㅂ(1)\n닫기\n)\nㅋ\n공장\n안쪽\n더안\n인사";
+  assert.deepEqual(await runtimeOutput(doubleClose), ["1"]);
+});
+
+test("nested closing aliases still reject missing, extra and cyclic terminators", () => {
+  const prefix = closing => `ㅊ정의=ㅊ\nㅊ닫기=${closing}\nㅊ공장\n정의 인사\nㅂ(3)\n닫기`;
+  parseError(prefix("ㅋ"), "custom 공장 본문을 닫는 ㅋ가 없습니다");
+  parseError(prefix("ㅋ ㅋ ㅋ") + "\n공장\n인사", "이 위치에는 ㅋ 블록 구분자를 쓸 수 없습니다");
+  parseError(prefix("닫기"), "custom 매크로가 순환합니다");
+  parseError(prefix("ㅋ ㅋ").replace("ㅂ(3)", "인사") + "\n공장\n인사", "custom 매크로가 순환합니다");
+});
+
 test("declaration aliases preserve Hangul names at the actual macro invocation", async () => {
   for (const name of ["value", "몍", "노"]) {
     for (const early of [true, false]) {

@@ -1,0 +1,16 @@
+{
+  "environment": "Codex in-app browser, local site build",
+  "method": "Actual UI source entry and Worker execution through CUA",
+  "baseline": "87d929b460c16b6be3e60e15f9414532a77a402e",
+  "passed": 5,
+  "total": 5,
+  "cases": [
+    {"name": "reported double-close alias regression", "source": "ㅊ정의=ㅊ\nㅊ두끝=ㅋ ㅋ\nㅊ공장\n정의 인사\nㅂ(3)\n두끝\n공장\n인사", "output": ["3"], "status": "완료"},
+    {"name": "statements before, between and after closers", "source": "ㅊ정의=ㅊ\nㅊ닫기=ㅂ(2)ㅋㅂ(4)ㅋㅂ(9)\nㅊ공장\n정의 인사\nㅂ(3)\n닫기\n공장\n인사", "output": ["9", "4", "3", "2"], "status": "완료"},
+    {"name": "nested closing alias in yo payload", "source": "ㅊC=ㅊㅛㅋ\nㅊ닫기=ㅂ(2)ㅋㅂ(3)\nㅊ공장\nC(안쪽\nㅊ인사\nㅂ(1)\n닫기\n)\nㅋ\n공장\n안쪽\n인사", "output": ["3", "1", "2"], "status": "완료"},
+    {"name": "excess closer remains an error", "source": "ㅊ정의=ㅊ\nㅊ닫기=ㅋ ㅋ ㅋ\nㅊ공장\n정의 인사\nㅂ(3)\n닫기\n공장\n인사", "output": [], "error": "6행 1열: 이 위치에는 ㅋ 블록 구분자를 쓸 수 없습니다", "status": "오류"},
+    {"name": "valid rerun after syntax error", "source": "ㅊ정의=ㅊ\nㅊ두끝=ㅋ ㅋ\nㅊ공장\n정의 인사\nㅂ(3)\n두끝\n공장\n인사", "output": ["3"], "status": "완료"}
+  ],
+  "console_warnings_or_errors": [],
+  "not_tested": ["Physical phone IME", "Other browser engines", "Every macro combination"]
+}
