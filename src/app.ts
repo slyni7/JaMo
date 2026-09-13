@@ -67,6 +67,7 @@ function line(text: string, className = 'output-line') {
   node.textContent = text;
   output.append(node);
   output.scrollTop = output.scrollHeight;
+  return node;
 }
 function finish(message: string) {
   worker?.terminate(); worker = null; busy = false;
@@ -76,15 +77,33 @@ function finish(message: string) {
   status(message); persist();
 }
 function post(message: Request) { worker?.postMessage(message); }
+function goToError(path: string, lineNumber: number) {
+  if (!Object.hasOwn(files, path)) return;
+  if (path !== active) {
+    files[active] = editor.value;
+    active = path;
+    renderEditor();
+  }
+  const lines = editor.value.split('\n');
+  const index = Math.min(lineNumber - 1, lines.length - 1);
+  const start = lines.slice(0, index).reduce((sum, item) => sum + item.length + 1, 0);
+  editor.focus(); editor.setSelectionRange(start, start + lines[index].length);
+  editor.scrollTop = Math.max(0, (index - 2) * 24.7);
+  refreshPosition(); persist();
+}
 function showError(reply: Extract<Reply, { type: 'error' }>) {
   sound.play('error');
-  line(reply.message, 'output-error');
-  if (reply.line && (!reply.path || reply.path === active)) {
-    const lines = editor.value.split('\n');
-    const start = lines.slice(0, reply.line - 1).reduce((sum, item) => sum + item.length + 1, 0);
-    editor.focus(); editor.setSelectionRange(start, start + (lines[reply.line - 1]?.length || 0));
-    editor.scrollTop = Math.max(0, (reply.line - 3) * 24.7);
-    refreshPosition();
+  const message = line(reply.message, 'output-error');
+  const path = reply.path ?? active;
+  if (reply.line !== undefined && Number.isInteger(reply.line) && reply.line > 0 && Object.hasOwn(files, path)) {
+    const lineNumber = reply.line;
+    const location = document.createElement('button');
+    location.type = 'button'; location.className = 'output-location';
+    location.textContent = `${path.slice(1)} · ${lineNumber}행으로 이동`;
+    location.onclick = () => goToError(path, lineNumber);
+    message.append(location);
+    output.scrollTop = output.scrollHeight;
+    if (path === active) goToError(path, lineNumber);
   }
   finish('오류');
 }
@@ -214,14 +233,17 @@ picker.onchange = async () => {
 };
 const dialog = element<HTMLDialogElement>('new-file-dialog');
 element('new').onclick = () => { element('new-file-error').textContent = ''; dialog.showModal(); element<HTMLInputElement>('new-file-name').select(); };
-element('create-file').onclick = event => {
+element('cancel-new-file').onclick = () => dialog.close('cancel');
+element<HTMLFormElement>('new-file-form').onsubmit = event => {
+  event.preventDefault();
   const raw = element<HTMLInputElement>('new-file-name').value.trim().replaceAll('\\', '/');
   const parts = raw.split('/').filter(Boolean);
   const path = '/' + parts.join('/');
   if (!parts.length || parts.some(part => part === '.' || part === '..') || Object.hasOwn(files, path)) {
-    event.preventDefault(); element('new-file-error').textContent = '겹치지 않는 파일 이름을 입력해 주세요. 경로에 . 또는 ..는 쓸 수 없습니다.'; return;
+    element('new-file-error').textContent = '겹치지 않는 파일 이름을 입력해 주세요. 경로에 . 또는 ..는 쓸 수 없습니다.'; return;
   }
   persist(); files[path] = ''; active = path; renderEditor(); persist();
+  dialog.close('create'); editor.focus(); status('새 파일 생성됨');
 };
 function renderPalette() {
 element('jamo-keys').replaceChildren();
