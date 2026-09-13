@@ -33,7 +33,7 @@ export function transitionInputAssist(state, edit, options, now) {
 }
 /**
  * Native input is inspected after the browser changes the value. A single local
- * setRangeText joins the last two characters; the first is never held back.
+ * edit joins the last two characters; the first is never held back.
  * Palette buttons should prevent pointerdown's focus change, since blur cancels.
  */
 export function createTextareaInputAssist(editor, initialOptions = {}, onChange = () => { }, now = () => performance.now()) {
@@ -72,10 +72,28 @@ export function createTextareaInputAssist(editor, initialOptions = {}, onChange 
         }
     }
     function replaceRange(text, start, end) {
-        // A browser may dispatch select from setRangeText before observed is updated.
+        // insertText preserves the browser's undo buffer; setRangeText does not.
+        // It may synchronously emit input/select, so only our final value is notified.
+        // https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+        const expected = editor.value.slice(0, start) + text + editor.value.slice(end);
         editingRange = true;
         try {
-            editor.setRangeText(text, start, end, 'end');
+            const document = editor.ownerDocument;
+            let inserted = false;
+            if (typeof document?.execCommand === 'function') {
+                editor.focus();
+                editor.setSelectionRange(start, end);
+                try {
+                    document.execCommand('insertText', false, text);
+                }
+                catch { /* Unsupported commands retain the range-edit fallback. */ }
+                // Some engines return false even after editing; inspect the actual value.
+                inserted = editor.value === expected;
+            }
+            if (!inserted)
+                editor.setRangeText(text, start, end, 'end');
+            else
+                editor.setSelectionRange(start + text.length, start + text.length);
         }
         finally {
             editingRange = false;
@@ -99,7 +117,7 @@ export function createTextareaInputAssist(editor, initialOptions = {}, onChange 
         listeners.push([type, listener, capture]);
     }
     listen('beforeinput', (event) => {
-        if (notifying)
+        if (notifying || editingRange)
             return;
         beforeInput = snapshot();
         if (!composing && !event.isComposing && event.inputType !== 'insertText'
@@ -108,6 +126,12 @@ export function createTextareaInputAssist(editor, initialOptions = {}, onChange 
     });
     // Capture allows the existing editor input listener to save the combined value.
     listen('input', (event) => {
+        // An insertText command can dispatch input before replaceRange returns. The
+        // outer native event or notify() will deliver the completed edit once.
+        if (editingRange) {
+            event.stopImmediatePropagation();
+            return;
+        }
         if (notifying)
             return;
         if (composing || event.isComposing) {
