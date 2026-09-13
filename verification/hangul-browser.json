@@ -1,0 +1,49 @@
+{
+  "browser": "isolated headless Microsoft Edge",
+  "passed": 10,
+  "total": 10,
+  "cases": [
+    {
+      "name": "new_composed_example_in_worker",
+      "passed": true
+    },
+    {
+      "name": "spelling_몍",
+      "passed": true
+    },
+    {
+      "name": "spelling_몌ㄱ",
+      "passed": true
+    },
+    {
+      "name": "spelling_ㅁㅖㄱ",
+      "passed": true
+    },
+    {
+      "name": "spelling_몍",
+      "passed": true
+    },
+    {
+      "name": "spelling_ㅁᅟᅨᆨ",
+      "passed": true
+    },
+    {
+      "name": "declaration_and_literal_protection",
+      "passed": true
+    },
+    {
+      "name": "custom_macro_body_and_name",
+      "passed": true
+    },
+    {
+      "name": "declaration_through_custom_keyword",
+      "passed": true
+    },
+    {
+      "name": "word_mapping_over_declaration_over_vanilla_in_browser_runtime",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "verified_at": "2026-09-13T06:23:00.534Z"
+}

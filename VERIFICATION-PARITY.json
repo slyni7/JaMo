@@ -1,0 +1,3268 @@
+{
+  "case_count": 93,
+  "passed": 93,
+  "failed": 0,
+  "engines": [
+    "python",
+    "node"
+  ],
+  "declared_symbol_union": [
+    "\u3131",
+    "\u3132",
+    "\u3134",
+    "\u3137",
+    "\u3138",
+    "\u3139",
+    "\u3141",
+    "\u3142",
+    "\u3143",
+    "\u3145",
+    "\u3146",
+    "\u3147",
+    "\u3148",
+    "\u3149",
+    "\u314b",
+    "\u314c",
+    "\u314d",
+    "\u314e",
+    "\u314f",
+    "\u3150",
+    "\u3151",
+    "\u3152",
+    "\u3153",
+    "\u3154",
+    "\u3155",
+    "\u3156",
+    "\u3157",
+    "\u3158",
+    "\u3159",
+    "\u315a",
+    "\u315b",
+    "\u315c",
+    "\u315d",
+    "\u315e",
+    "\u315f",
+    "\u3160",
+    "\u3161",
+    "\u3162",
+    "\u3163"
+  ],
+  "coverage_note": "Symbol mapping is not proof of complete language semantics. Python-only execution is not TS parity verification.",
+  "results": [
+    {
+      "name": "legacy_math_boolean_short_circuit",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "14 -3 2 1.5",
+              "\u3156 \u3157 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "14 -3 2 1.5",
+              "\u3156 \u3157 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_declarations_and_scope",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9 4"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9 4"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_if_elseif_else",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_recursion_return",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "720"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "720"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_loops_continue_break",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "10"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "10"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_loop_declarations_default_to_fresh_cells",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_next_iteration_has_no_previous_declaration_binding",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc0c8 \ubc18\ubcf5",
+              "\uc0c8 \ubc18\ubcf5",
+              "\uc0c8 \ubc18\ubcf5"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc0c8 \ubc18\ubcf5",
+              "\uc0c8 \ubc18\ubcf5",
+              "\uc0c8 \ubc18\ubcf5"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_while_references_survive_continue_and_break_independently",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "10 20 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "10 20 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_nested_loop_names_and_outer_bindings_remain_separate",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 1",
+              "2 2",
+              "99"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 1",
+              "2 2",
+              "99"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_loop_scope_and_function_call_separation",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2",
+              "3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2",
+              "3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_fresh_loop_closures_preserve_each_iteration",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_goto_and_invalid_jumps",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_goto_can_leave_nested_blocks_and_loop_context",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "8"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "8"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_goto_backward_to_visible_label",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_goto_keeps_nearest_label_and_unwinds_handler",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc548",
+              "\ubc16"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc548",
+              "\ubc16"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_exception_and_rethrow",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc2e4\ud328"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc2e4\ud328"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_nil_exception_preserves_its_type",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \uc5c6\uc74c"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \uc5c6\uc74c"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_handlers_do_not_swallow_control",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_types_char_string_nil",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "12 1.5 \uac00 \u315c 2 \uc815\uc218 \ucc38\uac70\uc9d3",
+              "[1, 2] [\uac00, \ub098]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "12 1.5 \uac00 \u315c 2 \uc815\uc218 \ucc38\uac70\uc9d3",
+              "[1, 2] [\uac00, \ub098]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_char_and_string_have_distinct_types",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790 \ubb38\uc790 \ubb38\uc790\uc5f4"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790 \ubb38\uc790 \ubb38\uc790\uc5f4"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_string_iteration_and_conversion_produce_characters",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790 \ubb38\uc790",
+              "\ubb38\uc790"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790 \ubb38\uc790",
+              "\ubb38\uc790"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_membership_filter_slices",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[2, 4] \u3156 4 [2, 3] [4, 3, 2, 1]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[2, 4] \u3156 4 [2, 3] [4, 3, 2, 1]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_where_named_function_and_order",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[3, 2]",
+              "[3, 1, 2]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[3, 2]",
+              "[3, 1, 2]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_empty_filter_still_validates_predicate",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[] []"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[] []"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_general_reference_alias_and_box_lifetime",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "100 8 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "100 8 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_returned_local_reference",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "20"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "20"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_reference_to_readonly_expression_boxes_once",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uac00 3 1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uac00 3 1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_strict_reference_and_rejections",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "2 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_index_evaluated_once_and_reference_tracks_item",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 [5, 10, 99]",
+              "\uc0ad\uc81c \uac10\uc9c0"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 [5, 10, 99]",
+              "\uc0ad\uc81c \uac10\uc9c0"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_alias_copy_and_cycle",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[2] [1]",
+              "[2, [\uc21c\ud658]]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[2] [1]",
+              "[2, [\uc21c\ud658]]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_debugger_events",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [
+              2,
+              3
+            ],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [
+              2,
+              3
+            ],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_input_builtin",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc544\ub514\ub098"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [
+              "\uc774\ub984: "
+            ],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc544\ub514\ub098"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [
+              "\uc774\ub984: "
+            ],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "legacy_input_eof_is_a_catchable_language_error",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc785\ub825\uc774 \ub05d\ub0ac\uc2b5\ub2c8\ub2e4."
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [
+              ""
+            ],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc785\ub825\uc774 \ub05d\ub0ac\uc2b5\ub2c8\ub2e4."
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [
+              ""
+            ],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "integer_beyond_js_safe_range",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9007199254740993 9007199254740995 \u3157"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9007199254740993 9007199254740995 \u3157"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "integer_float_comparison_exactness",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3157 \u3156 \uc815\uc218 \uc2e4\uc218"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3157 \u3156 \uc815\uc218 \uc2e4\uc218"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_display_preserves_fraction_and_negative_zero",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1.0 -0.0 1e+20 1e-07 1e-05 0.0001"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1.0 -0.0 1e+20 1e-07 1e-05 0.0001"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "boolean_identity_numeric_rejection",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3157 \u3157 \u3157 \u3156",
+              "\uc22b\uc790\uc640 \ucc38\uac70\uc9d3 \ubd84\ub9ac"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3157 \u3157 \u3157 \u3156",
+              "\uc22b\uc790\uc640 \ucc38\uac70\uc9d3 \ubd84\ub9ac"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "boolean_truth_table",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \u3156 \u3156 \u3156 \u3156 \u3157 \u3156 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \u3156 \u3156 \u3156 \u3156 \u3157 \u3156 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "numeric_precedence_signed_divmod",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "-4 0.25 512 -3 -2 2 -1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "-4 0.25 512 -3 -2 2 -1"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "unicode_digits_small",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "123 123 1234 12.5"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "123 123 1234 12.5"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "huge_integer_5000_digits",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+              "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+              "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "integer_char_conversion_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-vi_vlljb\\main.txt:1:1: \uc815\uc218\ub85c \ubc14\uafc0 \uc218 \uc5c6\ub294 \uac12\uc785\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-9acll_9h/main.txt:1:1: \uc815\uc218\ub85c \ubc14\uafc0 \uc218 \uc5c6\ub294 \uac12\uc785\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_char_conversion_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-n49lx3u2\\main.txt:1:1: \uc2e4\uc218\ub85c \ubc14\uafc0 \uc218 \uc5c6\ub294 \uac12\uc785\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-yb381yj6/main.txt:1:1: \uc2e4\uc218\ub85c \ubc14\uafc0 \uc218 \uc5c6\ub294 \uac12\uc785\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_overflow_literal",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \uc720\ud55c \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub09c \uc22b\uc790 \ub9ac\ud130\ub7f4\uc785\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \uc720\ud55c \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub09c \uc22b\uc790 \ub9ac\ud130\ub7f4\uc785\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_overflow_arithmetic",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-rg6noxe1\\main.txt:1:1: \uc9c0\uc6d0\ud558\ub294 \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-n7ipp0pf/main.txt:1:1: \uc9c0\uc6d0\ud558\ub294 \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_infinity_conversion",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-o7tvzmr2\\main.txt:1:1: \uc720\ud55c\ud55c \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-dl9p0h6z/main.txt:1:1: \uc720\ud55c\ud55c \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "complex_power_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-isw7gapz\\main.txt:1:2: \uc9c0\uc6d0\ud558\ub294 \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-_r5yj8hh/main.txt:1:2: \uc9c0\uc6d0\ud558\ub294 \uc2e4\uc218 \ubc94\uc704\ub97c \ubc97\uc5b4\ub0ac\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "bool_index_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-yvjtuub8\\main.txt:1:1: \ubaa9\ub85d \ubc88\ud638\ub294 \uc815\uc218\uc5ec\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-vw20qjh5/main.txt:1:1: \ubaa9\ub85d \ubc88\ud638\ub294 \uc815\uc218\uc5ec\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "float_index_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-0wmv80qf\\main.txt:1:1: \ubaa9\ub85d \ubc88\ud638\ub294 \uc815\uc218\uc5ec\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-33bdjetm/main.txt:1:1: \ubaa9\ub85d \ubc88\ud638\ub294 \uc815\uc218\uc5ec\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "string_codepoint_index_slice_order",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "3 \ud83d\ude00 \ub098\ud83d\ude00\uac00 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "3 \ud83d\ude00 \ub098\ud83d\ude00\uac00 \u3156"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "char_concatenation_becomes_string",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790\uc5f4 \u3156 \ubb38\uc790\uc5f4 \ubb38\uc790"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubb38\uc790\uc5f4 \u3156 \ubb38\uc790\uc5f4 \ubb38\uc790"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "char_scalar_bounds",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u0000 \udbff\udfff"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u0000 \udbff\udfff"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "char_surrogate_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-jxwjakp9\\main.txt:1:1: \uc720\ud6a8\ud55c \uc720\ub2c8\ucf54\ub4dc \ubb38\uc790 \ubc88\ud638\uac00 \uc544\ub2d9\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-0lthnd1_/main.txt:1:1: \uc720\ud6a8\ud55c \uc720\ub2c8\ucf54\ub4dc \ubb38\uc790 \ubc88\ud638\uac00 \uc544\ub2d9\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "surrogate_escape_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 3\uc5f4: \uc11c\ub85c\uac8c\uc774\ud2b8\ub294 \ub3c5\ub9bd\uc801\uc778 \uc720\ub2c8\ucf54\ub4dc \ubb38\uc790\ub85c \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 3\uc5f4: \uc11c\ub85c\uac8c\uc774\ud2b8\ub294 \ub3c5\ub9bd\uc801\uc778 \uc720\ub2c8\ucf54\ub4dc \ubb38\uc790\ub85c \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "char_combining_sequence_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \ubb38\uc790 \ub9ac\ud130\ub7f4\uc5d0\ub294 \uc720\ub2c8\ucf54\ub4dc \ucf54\ub4dc\ud3ec\uc778\ud2b8 \ud558\ub098\uac00 \ud544\uc694\ud569\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \ubb38\uc790 \ub9ac\ud130\ub7f4\uc5d0\ub294 \uc720\ub2c8\ucf54\ub4dc \ucf54\ub4dc\ud3ec\uc778\ud2b8 \ud558\ub098\uac00 \ud544\uc694\ud569\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "strict_general_refs_equality",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \u3156 \u3157 5 \ucc38\uc870 \uc5c4\uaca9\ud55c\ucc38\uc870"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\u3156 \u3156 \u3157 5 \ucc38\uc870 \uc5c4\uaca9\ud55c\ucc38\uc870"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "deleted_strict_reference_write_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-2tdczw5s\\main.txt:4:1: \uc0ad\uc81c\ub41c \uc800\uc7a5 \uc790\ub9ac\uc5d0 \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-ui0vbn7d/main.txt:4:1: \uc0ad\uc81c\ub41c \uc800\uc7a5 \uc790\ub9ac\uc5d0 \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "reinserted_slot_does_not_revive_reference",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc8fd\uc740 \uc790\ub9ac 9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc8fd\uc740 \uc790\ub9ac 9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "two_boxes_from_equal_values_are_distinct",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9 3 \u3157"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9 3 \u3157"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "assignment_place_evaluates_before_rhs",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[1, 2] [9]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[1, 2] [9]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "for_iteration_snapshots_values",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1",
+              "2",
+              "3",
+              "[1, 20, 3, 4]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1",
+              "2",
+              "3",
+              "[1, 20, 3, 4]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "fresh_loop_exception_escape",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "closure_mutates_surviving_cell",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "where_result_shares_nested_value_not_top_level_cells",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[[9], [2]] [[9], [7]]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "[[9], [2]] [[9], [7]]"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "where_checks_empty_callable",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-29088s98\\main.txt:1:1: \u315e \uc624\ub978\ucabd\uc5d0\ub294 \uac80\uc0ac \ud568\uc218\uac00 \ud544\uc694\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-f9p1qd4h/main.txt:1:1: \u315e \uc624\ub978\ucabd\uc5d0\ub294 \uac80\uc0ac \ud568\uc218\uac00 \ud544\uc694\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "where_checks_empty_builtin_arity",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-pnb9epbo\\main.txt:1:1: \u315e \uac80\uc0ac \ud568\uc218\ub294 \uc778\uc218 \ud558\ub098\ub85c \ud638\ucd9c\ud560 \uc218 \uc788\uc5b4\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-5ex8269o/main.txt:1:1: \u315e \uac80\uc0ac \ud568\uc218\ub294 \uc778\uc218 \ud558\ub098\ub85c \ud638\ucd9c\ud560 \uc218 \uc788\uc5b4\uc57c \ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "where_checks_empty_function_arity",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-e2_dy80i\\main.txt:4:1: \u315e \uac80\uc0ac \ud568\uc218\uc5d0\ub294 \ub9e4\uac1c\ubcc0\uc218 \ud558\ub098\uac00 \ud544\uc694\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-is86bbfz/main.txt:4:1: \u315e \uac80\uc0ac \ud568\uc218\uc5d0\ub294 \ub9e4\uac1c\ubcc0\uc218 \ud558\ub098\uac00 \ud544\uc694\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "try_nil_false_integer_payload_types",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc5c6\uc74c \u315c",
+              "\ucc38\uac70\uc9d3 \u3157",
+              "\uc815\uc218 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uc5c6\uc74c \u315c",
+              "\ucc38\uac70\uc9d3 \u3157",
+              "\uc815\uc218 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "try_break_is_control_not_fault",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud0c8\ucd9c"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud0c8\ucd9c"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "debug_abort_bypasses_handler",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "\uc0ac\uc6a9\uc790 \uc911\ub2e8",
+            "error_type": "DebugAbort",
+            "debug_events": [
+              2
+            ],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "DebugAbort: \uc0ac\uc6a9\uc790 \uc911\ub2e8",
+            "error_type": "DebugAbort",
+            "debug_events": [
+              2
+            ],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "debug_missing_handler_is_explicit",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-0y5qyct1\\main.txt:1:1: \u3159 \uc815\uc9c0: \uc5f0\uacb0\ub41c \ub300\ud654\ud615 \ub514\ubc84\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-ojjwqowt/main.txt:1:1: \u3159 \uc815\uc9c0: \uc5f0\uacb0\ub41c \ub300\ud654\ud615 \ub514\ubc84\uac70\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "goto_skipped_declaration",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-55tczzna\\main.txt:4:3: \uc120\uc5b8\ud558\uc9c0 \uc54a\uc740 \uc774\ub984\uc785\ub2c8\ub2e4: \uac12",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-dpwz6xbf/main.txt:4:3: \uc120\uc5b8\ud558\uc9c0 \uc54a\uc740 \uc774\ub984\uc785\ub2c8\ub2e4: \uac12",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "goto_into_sibling_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-yon2ca4s\\main.txt:5:1: \ud604\uc7ac \ubc94\uc704\uc5d0\uc11c \ubcf4\uc774\uc9c0 \uc54a\ub294 \ub77c\ubca8\uc785\ub2c8\ub2e4: \ub0b4\ubd80",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-ladfde2f/main.txt:5:1: \ud604\uc7ac \ubc94\uc704\uc5d0\uc11c \ubcf4\uc774\uc9c0 \uc54a\ub294 \ub77c\ubca8\uc785\ub2c8\ub2e4: \ub0b4\ubd80",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "goto_across_function_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-w0x721ex\\main.txt:3:1: \ud604\uc7ac \ubc94\uc704\uc5d0\uc11c \ubcf4\uc774\uc9c0 \uc54a\ub294 \ub77c\ubca8\uc785\ub2c8\ub2e4: \ubc14\uae65",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-by4p05tk/main.txt:3:1: \ud604\uc7ac \ubc94\uc704\uc5d0\uc11c \ubcf4\uc774\uc9c0 \uc54a\ub294 \ub77c\ubca8\uc785\ub2c8\ub2e4: \ubc14\uae65",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "return_outside_function_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-t27rnw2p\\main.txt:1:1: \u3137 \ubc18\ud658\uc740 \ud568\uc218 \uc548\uc5d0\uc11c \uc0ac\uc6a9\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-2dri_pgn/main.txt:1:1: \u3137 \ubc18\ud658\uc740 \ud568\uc218 \uc548\uc5d0\uc11c \uc0ac\uc6a9\ud569\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "reraise_outside_handler_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-lw3ym63s\\main.txt:1:1: \ub2e4\uc2dc \ubc1c\uc0dd\uc2dc\ud0ac \uc608\uc678\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-7z0j8j_t/main.txt:1:1: \ub2e4\uc2dc \ubc1c\uc0dd\uc2dc\ud0ac \uc608\uc678\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "step_limit_terminates_loop",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-sm1l6bs_\\main.txt:2:1: \uc2e4\ud589 \ud55c\ub3c4 30\ub2e8\uacc4\ub97c \ub118\uc5c8\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-9agw1cge/main.txt:2:1: \uc2e4\ud589 \ud55c\ub3c4 30\ub2e8\uacc4\ub97c \ub118\uc5c8\uc2b5\ub2c8\ub2e4.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "declaration_duplicate_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-pdtx72m4\\main.txt:2:1: \uc774\ubbf8 \uc120\uc5b8\ud55c \uc774\ub984\uc785\ub2c8\ub2e4: \uac12",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-0ap9n2op/main.txt:2:1: \uc774\ubbf8 \uc120\uc5b8\ud55c \uc774\ub984\uc785\ub2c8\ub2e4: \uac12",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "slice_zero_step_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-0wk_ga6l\\main.txt:1:1: \uc2e4\ud589 \uc624\ub958: slice step cannot be zero",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-u2thev0p/main.txt:1:1: \uc2e4\ud589 \uc624\ub958: slice step cannot be zero",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "slice_assignment_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "2\ud589 1\uc5f4: \uc2ac\ub77c\uc774\uc2a4\ub294 \ud604\uc7ac \uc77d\uae30\ub9cc \uc9c0\uc6d0\ud558\uba70 \ub300\uc785\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "2\ud589 1\uc5f4: \uc2ac\ub77c\uc774\uc2a4\ub294 \ud604\uc7ac \uc77d\uae30\ub9cc \uc9c0\uc6d0\ud558\uba70 \ub300\uc785\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "unallocated_compound_jamo_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \uc790\ubaa8 '\u3133'\uc5d0\ub294 \ubc30\uc815\ub41c \ubb38\ubc95\uc774 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "1\ud589 1\uc5f4: \uc790\ubaa8 '\u3133'\uc5d0\ub294 \ubc30\uc815\ub41c \ubb38\ubc95\uc774 \uc5c6\uc2b5\ub2c8\ub2e4",
+            "error_type": "ParseError",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "source_utf8_bom_and_line_endings",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud55c\uae00",
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud55c\uae00",
+              "2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "source_cp949_file_decoding",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud55c\uae00"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud55c\uae00"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "source_names_no_nfkc_or_hangul_split",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 3"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "comments_literal_and_embedded_newline",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 # /* */ \u3133 \u314a"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "1 2 # /* */ \u3133 \u314a"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_cache_and_file_write",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubd88\ub7ec\uc634",
+              "42 \u3156",
+              "\ud55c\uae00"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {
+              "\uacb0\uacfc.txt": "\ud55c\uae00"
+            }
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ubd88\ub7ec\uc634",
+              "42 \u3156",
+              "\ud55c\uae00"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {
+              "\uacb0\uacfc.txt": "\ud55c\uae00"
+            }
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_function_keeps_defining_module_path",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud558\uc704 \ub370\uc774\ud130"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ud558\uc704 \ub370\uc774\ud130"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_relative_to_importing_file",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "42"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "42"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_cycle_rejected",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-gu86rt4g\\\uc21c\ud658.txt:1:1: \uc21c\ud658 \uac00\uc838\uc624\uae30\uc785\ub2c8\ub2e4: \uc21c\ud658.txt",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-9wey4v6z/\uc21c\ud658.txt:1:1: \uc21c\ud658 \uac00\uc838\uc624\uae30\uc785\ub2c8\ub2e4: \uc21c\ud658.txt",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_initialization_fresh_loop_independent",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ucd08\uae30\ud654",
+              "42 1",
+              "42 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\ucd08\uae30\ud654",
+              "42 1",
+              "42 2"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_member_reference",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "9"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_invalid_default_alias_before_execution",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>\\work\\hunmin-parity-runs\\python-q42ik4fh\\main.txt:1:1: \uc774 \ud30c\uc77c \uc774\ub984\uc740 \ucf54\ub4dc\uc758 \uc774\ub984\uc73c\ub85c \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uac00\uc838\uc624\uae30 \uacbd\ub85c \ub4a4\uc5d0 \ubcc4\uce6d\uc744 \uc801\uc5b4 \uc8fc\uc138\uc694.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [],
+            "error": "<workspace>/work/hunmin-parity-runs/node-6j_d_wyn/main.txt:1:1: \uc774 \ud30c\uc77c \uc774\ub984\uc740 \ucf54\ub4dc\uc758 \uc774\ub984\uc73c\ub85c \uc4f8 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uac00\uc838\uc624\uae30 \uacbd\ub85c \ub4a4\uc5d0 \ubcc4\uce6d\uc744 \uc801\uc5b4 \uc8fc\uc138\uc694.",
+            "error_type": "Fault",
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {}
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    },
+    {
+      "name": "import_syntax_error_repair_retry",
+      "engines": {
+        "python": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uad6c\ubb38 \uc624\ub958 \ucc98\ub9ac",
+              "42"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {
+              "\ubaa8\ub4c8.txt": "\u3152 \uac12 = 42"
+            }
+          }
+        },
+        "node": {
+          "passed": true,
+          "failures": [],
+          "observation": {
+            "stdout": [
+              "\uad6c\ubb38 \uc624\ub958 \ucc98\ub9ac",
+              "42"
+            ],
+            "error": null,
+            "error_type": null,
+            "debug_events": [],
+            "input_prompts": [],
+            "files": {
+              "\ubaa8\ub4c8.txt": "\u3152 \uac12 = 42"
+            }
+          }
+        }
+      },
+      "passed": true,
+      "outcomes_equal": true
+    }
+  ]
+}

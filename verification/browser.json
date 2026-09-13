@@ -1,0 +1,55 @@
+{
+  "browser": "Microsoft Edge through Playwright, isolated headless context",
+  "cases": [
+    {
+      "name": "load_and_initial_program",
+      "passed": true
+    },
+    {
+      "name": "custom_operator_and_bare_block",
+      "passed": true
+    },
+    {
+      "name": "custom_type_methods_independent_fields_and_strict_reference",
+      "passed": true
+    },
+    {
+      "name": "asynchronous_input_debug_continue",
+      "passed": true
+    },
+    {
+      "name": "virtual_files_import_write_read",
+      "passed": true
+    },
+    {
+      "name": "positioned_runtime_error",
+      "passed": true
+    },
+    {
+      "name": "worker_cancel_infinite_loop",
+      "passed": true
+    },
+    {
+      "name": "input_eof_is_catchable",
+      "passed": true
+    },
+    {
+      "name": "download_utf8_and_saved_reload",
+      "passed": true
+    },
+    {
+      "name": "file_upload",
+      "passed": true
+    },
+    {
+      "name": "mobile_layout_and_jamo_palette",
+      "passed": true
+    }
+  ],
+  "passed": 11,
+  "total": 11,
+  "pageErrors": [],
+  "actual_phone_tested": false,
+  "github_published": false,
+  "verified_at": "2026-09-13T03:28:29.943Z"
+}

@@ -1,0 +1,443 @@
+{
+  "generatedAt": "2026-09-13T03:35:41.145Z",
+  "environment": {
+    "node": "v24.19.0",
+    "runtime": "dist/runtime.js Interpreter",
+    "host": "Node.js, virtual file Map, async input/debug callbacks",
+    "exampleSourceLoading": "Node.js native TypeScript stripping; source examples compared against compiled examples"
+  },
+  "sourceHashes": {
+    "README.md": "1b2bf601cd9240fed1e429cf95cc2d590c3b933c97582c99c327779b51597c88",
+    "src/examples.ts": "a607a668edd1b566ac93a1f96b78065d51977bd2a24c21611c254d05e338f927",
+    "dist/examples.js": "ba85b13da9b6fb536566f6d55ee5d427c67fcfd6f08d34b1d2e7059f13076eac",
+    "dist/runtime.js": "2aa0f256810cb57bd4e182880da140ffe17e4ffdac147e29c844536982191057",
+    "dist/frontend.js": "bd9f5f4e5ef60a757f43aae130ece256726e58cbde3da3d91c0688b802033080"
+  },
+  "sourceExamplesMatchCompiledExamples": true,
+  "coverage": {
+    "readmeTextBlocks": {
+      "expected": 6,
+      "found": 6
+    },
+    "bundledExamples": {
+      "expected": 6,
+      "found": 6
+    }
+  },
+  "exclusions": {
+    "fencedNonLanguageBlocks": [
+      {
+        "fenceIndex": 2,
+        "language": "mermaid",
+        "line": 46
+      },
+      {
+        "fenceIndex": 8,
+        "language": "sh",
+        "line": 211
+      },
+      {
+        "fenceIndex": 9,
+        "language": "sh",
+        "line": 222
+      }
+    ],
+    "statements": [
+      "README의 셸 명령은 자모 프로그램 실행 대상이 아닙니다.",
+      "Mermaid는 설명 도식이며 실행 대상이 아닙니다.",
+      "이탤릭체 별칭 제안표와 ㅅ 이름 형 선언 제안은 미구현 설계이며 실행 대상으로 해석하지 않았습니다.",
+      "기존 39개 기능 차등 검증은 반복하지 않았습니다.",
+      "이 결과는 Interpreter 기반 검사이며 브라우저 UI 경로 검증을 대신하지 않습니다."
+    ]
+  },
+  "readmeBlocks": [
+    {
+      "index": 1,
+      "readmeLine": 15,
+      "heading": "## 먼저 한 번 읽어보기",
+      "expectedBehavior": "합계·조건 분기·순서를 보존한 목록 필터",
+      "sourcePath": "/README/예제 1.txt",
+      "sourceSHA256": "0b8b6f36138a0718aff7bd28a7fc5cb8a336dea2b848af11d38ebbd0a3d6b763",
+      "initialFiles": [
+        "/README/예제 1.txt"
+      ],
+      "expectedOutput": [
+        "합계: 350",
+        "90점 이상: [100, 95]"
+      ],
+      "stdout": [
+        "합계: 350",
+        "90점 이상: [100, 95]"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 2,
+      "readmeLine": 114,
+      "heading": "### 한 줄 매크로",
+      "expectedBehavior": "새 연산자 합침을 덧셈으로 확장",
+      "sourcePath": "/README/예제 2.txt",
+      "sourceSHA256": "110dfa688ebfc80bbd517889356c0f906bdc71d6ebd64f481686406253657025",
+      "initialFiles": [
+        "/README/예제 2.txt"
+      ],
+      "expectedOutput": [
+        "3"
+      ],
+      "stdout": [
+        "3"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 3,
+      "readmeLine": 125,
+      "heading": "### 한 줄 매크로",
+      "expectedBehavior": "거짓 조건 안 매크로도 토큰 전처리 단계에서 등록됨",
+      "sourcePath": "/README/예제 3.txt",
+      "sourceSHA256": "6d6b1746121616a05e51ff5fb5e933bd08151be538646e2d98cab9ca5efe3d72",
+      "initialFiles": [
+        "/README/예제 3.txt"
+      ],
+      "expectedOutput": [
+        "A"
+      ],
+      "stdout": [
+        "A"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 4,
+      "readmeLine": 134,
+      "heading": "### 블록 매크로",
+      "expectedBehavior": "맨 이름으로 다중 문장 매크로를 순서대로 실행",
+      "sourcePath": "/README/예제 4.txt",
+      "sourceSHA256": "a765e0f8ff3aa3162980930fcd783b1f0ef613347bd104ea1e06214e7df5ea2c",
+      "initialFiles": [
+        "/README/예제 4.txt"
+      ],
+      "expectedOutput": [
+        "첫 번째",
+        "두 번째"
+      ],
+      "stdout": [
+        "첫 번째",
+        "두 번째"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 5,
+      "readmeLine": 147,
+      "heading": "### 필드와 메서드가 있는 사용자 자료형",
+      "expectedBehavior": "사용자 자료형의 메서드가 인스턴스 필드를 읽음",
+      "sourcePath": "/README/예제 5.txt",
+      "sourceSHA256": "d1e308f27cab06494bd9d8a6ef80c398ff2a3a9ada04ac15375b382cafd9fb06",
+      "initialFiles": [
+        "/README/예제 5.txt"
+      ],
+      "expectedOutput": [
+        "철수"
+      ],
+      "stdout": [
+        "철수"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 6,
+      "readmeLine": 190,
+      "heading": "### 어디? 여기! — 참조의 두 쌍",
+      "expectedBehavior": "범용·엄격 참조 모두 원래 저장 칸을 변경",
+      "sourcePath": "/README/예제 6.txt",
+      "sourceSHA256": "26e4b733b34fe63e2a5f39086ac6e30fb37d5b3828186bc096b4933a2732d46b",
+      "initialFiles": [
+        "/README/예제 6.txt"
+      ],
+      "expectedOutput": [
+        "90",
+        "100"
+      ],
+      "stdout": [
+        "90",
+        "100"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    }
+  ],
+  "bundledExamples": [
+    {
+      "index": 1,
+      "title": "처음 시작",
+      "sourcePath": "/시작.txt",
+      "sourceSHA256": "282c81558f4af69f5f81ec107b3c8b1779bfa0b5d764db1d09d91fa6802bb6a6",
+      "initialFiles": [
+        "/시작.txt"
+      ],
+      "expectedOutput": [
+        "전체 합계: 350",
+        "90점 이상: [100, 95]",
+        "100점이 있나요? ㅖ",
+        "참조로 고친 목록: [110, 85, 100, 95]"
+      ],
+      "stdout": [
+        "전체 합계: 350",
+        "90점 이상: [100, 95]",
+        "100점이 있나요? ㅖ",
+        "참조로 고친 목록: [110, 85, 100, 95]"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 2,
+      "title": "반복과 참조",
+      "sourcePath": "/반복참조.txt",
+      "sourceSHA256": "b664c35eae6f798aae01ba040b16a5ab90fea3ffdb023e5a78ddf8f5de8e8f1e",
+      "initialFiles": [
+        "/반복참조.txt"
+      ],
+      "expectedOutput": [
+        "1 2 3",
+        "99 2 3"
+      ],
+      "stdout": [
+        "1 2 3",
+        "99 2 3"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 3,
+      "title": "ㅊ · 새 명령",
+      "sourcePath": "/새명령.txt",
+      "sourceSHA256": "fd066168e228e3968b151e4aee96062ff4822f01dfd35f984228d17b5360eb9a",
+      "initialFiles": [
+        "/새명령.txt"
+      ],
+      "expectedOutput": [
+        "3",
+        "첫 번째",
+        "두 번째"
+      ],
+      "stdout": [
+        "3",
+        "첫 번째",
+        "두 번째"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 4,
+      "title": "ㅊ · 새 자료형",
+      "sourcePath": "/사람.txt",
+      "sourceSHA256": "c78b903e074e64650257e008c834177871870c17ba572d8ea917b956585bce3d",
+      "initialFiles": [
+        "/사람.txt"
+      ],
+      "expectedOutput": [
+        "안녕하세요, 철수",
+        "안녕하세요, 영희",
+        "안녕하세요, 새 이름",
+        "영희의 이름: 영희",
+        "자료형: 사람"
+      ],
+      "stdout": [
+        "안녕하세요, 철수",
+        "안녕하세요, 영희",
+        "안녕하세요, 새 이름",
+        "영희의 이름: 영희",
+        "자료형: 사람"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 5,
+      "title": "입력과 정지",
+      "sourcePath": "/대화.txt",
+      "sourceSHA256": "b532e2ca31161e6e66c4c33bab9000ccd75c6b22a6ae4fe148c7e8a83dcd91e4",
+      "initialFiles": [
+        "/대화.txt"
+      ],
+      "expectedOutput": [
+        "반갑습니다, 아디나",
+        "계속 버튼을 눌러 실행을 재개했습니다."
+      ],
+      "stdout": [
+        "반갑습니다, 아디나",
+        "계속 버튼을 눌러 실행을 재개했습니다."
+      ],
+      "expectedPrompts": [
+        "이름을 알려주세요."
+      ],
+      "prompts": [
+        "이름을 알려주세요."
+      ],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [
+        4
+      ],
+      "debugEvents": [
+        {
+          "line": 4,
+          "col": 1,
+          "path": "/대화.txt",
+          "locals": {
+            "이름": "아디나",
+            "점수": "70"
+          },
+          "action": "continue"
+        }
+      ],
+      "expectedVirtualFileWrites": {},
+      "virtualFileWrites": {},
+      "expectedModules": [],
+      "loadedModules": [],
+      "passed": true,
+      "failure": null
+    },
+    {
+      "index": 6,
+      "title": "파일 가져오기",
+      "sourcePath": "/시작.txt",
+      "sourceSHA256": "b6656c88a8980f69c42392216db4ae63766df2e2fa3cbd22d1a65b7f6b4ad1da",
+      "initialFiles": [
+        "/시작.txt",
+        "/도구.txt"
+      ],
+      "expectedOutput": [
+        "도구의 결과: 42",
+        "계산 결과: 42"
+      ],
+      "stdout": [
+        "도구의 결과: 42",
+        "계산 결과: 42"
+      ],
+      "expectedPrompts": [],
+      "prompts": [],
+      "inputResponse": "아디나",
+      "expectedDebugLines": [],
+      "debugEvents": [],
+      "expectedVirtualFileWrites": {
+        "/결과.txt": "계산 결과: 42"
+      },
+      "virtualFileWrites": {
+        "/결과.txt": "계산 결과: 42"
+      },
+      "expectedModules": [
+        "/도구.txt"
+      ],
+      "loadedModules": [
+        "/도구.txt"
+      ],
+      "passed": true,
+      "failure": null
+    }
+  ],
+  "sourceFilesUnchanged": true,
+  "totals": {
+    "executed": 12,
+    "passed": 12
+  },
+  "passed": true
+}

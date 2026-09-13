@@ -1,0 +1,26 @@
+{
+  "browser": "isolated headless Microsoft Edge",
+  "passed": 3,
+  "total": 3,
+  "cases": [
+    {
+      "name": "compact_jamo_conditions",
+      "source": "ㅒ _조건=ㅖ\nㅁ_조건ㄱ\nㅂ(\"밑줄 이름\")\nㅋ\nㅁ(ㅖ)ㄱ\nㅂ(\"괄호\")\nㅋ\nㅁㅗㄱ\nㅂ(\"잘못된 분기\")\nㅇㅁㅖㄱ\nㅂ(\"다른 분기\")\nㅋ",
+      "actual": "밑줄 이름\n\n괄호\n\n다른 분기\n\n실행 완료 · 6.7 ms",
+      "passed": true
+    },
+    {
+      "name": "english_custom_if_with_space",
+      "source": "ㅊif=ㅁ\nif (ㅖ)ㄱ\nㅂ(\"영문 공백\")\nㅋ",
+      "actual": "영문 공백\n\n실행 완료 · 5.1 ms",
+      "passed": true
+    },
+    {
+      "name": "english_custom_if_without_space",
+      "source": "ㅊif=ㅁ\nif(ㅖ)ㄱ\nㅂ(\"실행되면안됨\")\nㅋ",
+      "actual": "2행 1열: 조건문 단어 if 뒤에는 공백이 필요합니다",
+      "passed": true
+    }
+  ],
+  "verified_at": "2026-09-13T04:22:12.193Z"
+}
