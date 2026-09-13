@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-13",
+  "surface": "Codex in-app browser",
+  "target": "local site/ preview, HTTP port 4185",
+  "method": "Editor input, Run button, browser Worker, visible completion/output or diagnostic",
+  "passed": 4,
+  "total": 4,
+  "cases": [
+    {"name": "compressed for/if plus custom combo alias", "output": ["압축 합계: 5", "매크로 성공"], "status": "완료"},
+    {"name": "declared combo name priority and parenthesized label/goto", "output": ["ㅖ", "라벨 도착"], "status": "완료"},
+    {"name": "missing name in compressed condition", "diagnostic": "/시작.txt:1:3: 선언하지 않은 이름입니다: _없는이름", "status": "오류"},
+    {"name": "unparenthesized combo after error", "output": ["압축 문법 실행 완료!"], "status": "완료"}
+  ],
+  "settings": {"label": "설정 (준비 중)", "disabled": true, "input_assistance_implemented": false},
+  "not_tested": ["physical Android keyboard", "physical iPhone keyboard", "public Pages deployment of this revision"]
+}

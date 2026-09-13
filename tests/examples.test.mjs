@@ -6,7 +6,7 @@ import { examples } from '../dist/examples.js';
 
 const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
 const blocks = [...readme.matchAll(/```text\r?\n([\s\S]*?)```/g)].map(match => match[1].replaceAll('\r\n', '\n'));
-const expectedReadme = [['합계: 350','90점 이상: [100, 95]'],['모아쓰기 실행'],['3'],['A'],['첫 번째','두 번째'],['철수'],['90','100']];
+const expectedReadme = [['합계: 350','90점 이상: [100, 95]'],['모아쓰기 실행'],['압축 조건문','같은 매크로'],['3'],['A'],['첫 번째','두 번째'],['철수'],['90','100']];
 assert.equal(blocks.length, expectedReadme.length, '모든 README 자모 예제를 실행 대상으로 등록해야 합니다.');
 for (let index = 0; index < blocks.length; index++) {
   test(`README executable example ${index + 1}`, async () => {
